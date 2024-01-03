@@ -19,7 +19,7 @@ function App() {
       <h1>Luxemburg Press</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
-          Du har klickat {count} gånger
+          Du har klickat {count} gånger. Testa att klicka en gång till!
         </button>
         {/* <p>
           Edit <code>src/App.tsx</code> and save to test HMR
