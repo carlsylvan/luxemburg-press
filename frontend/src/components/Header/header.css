@@ -1,3 +1,15 @@
 .header {
     background-color: antiquewhite;
 }
+
+.nav {
+    list-style: none;
+    display: flex;
+    justify-content: end;
+}
+
+.nav-list {
+    display: flex;
+    flex-direction: row;
+    margin-right: 2rem;
+}
