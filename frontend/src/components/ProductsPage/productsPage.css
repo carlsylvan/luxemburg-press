@@ -1,0 +1,9 @@
+.products-page {
+    border: 1px solid black;
+}
+
+.product-card {
+    border: 1px solid black;
+    width: 200px;
+    height: 200px;
+}

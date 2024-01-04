@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./productsPage.css";
 import { IProduct } from "../../interfaces/IProduct";
 import { getProducts } from "../../services/productsService";
 
@@ -12,9 +13,9 @@ export default function ProductsPage() {
     }, []);
     
     return (
-        <div>
+        <div className="products-page">
             {products.map((product: IProduct) => (
-                <div key={product._id}>
+                <div className="product-card" key={product._id}>
                     <p>{product.name}</p>
                     <p>{product.category}</p>
                     <p>{product.price}</p>
