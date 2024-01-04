@@ -20,7 +20,9 @@ productsRouter.get("/", async (_req: Request, res: Response) => {
         const products = (await collections.products.find({}).toArray()) as unknown as Product[];
         res.status(200).send(products);
     } catch (error) {
-        res.status(500).send(error.message);
+        const errorMessage = (error instanceof Error) ? error.message : 'An unknown error occurred';
+        console.error(errorMessage);
+        res.status(500).send(errorMessage);
     }
 });
 
@@ -51,7 +53,9 @@ productsRouter.get("/:id", async (req: Request, res: Response) => {
             res.status(404).send(`Unable to find matching document with id: ${id}`);
         }
     } catch (error) {
-        res.status(500).send(error.message);
+        const errorMessage = (error instanceof Error) ? error.message : 'An unknown error occurred';
+        console.error(errorMessage);
+        res.status(500).send(errorMessage);
     }
 });
 
@@ -66,8 +70,9 @@ productsRouter.post("/", async (req: Request, res: Response) => {
             ? res.status(201).send(`Successfully created a new product with id ${result.insertedId}`)
             : res.status(500).send("Failed to create a new product.");
     } catch (error) {
-        console.error(error);
-        res.status(400).send(error.message);
+        const errorMessage = (error instanceof Error) ? error.message : 'An unknown error occurred';
+        console.error(errorMessage);
+        res.status(400).send(errorMessage);
     }
 });
 
@@ -86,8 +91,9 @@ productsRouter.put("/:id", async (req: Request, res: Response) => {
             ? res.status(200).send(`Successfully updated product with id ${id}`)
             : res.status(304).send(`Product with id: ${id} not updated`);
     } catch (error) {
-        console.error(error.message);
-        res.status(400).send(error.message);
+        const errorMessage = (error instanceof Error) ? error.message : 'An unknown error occurred';
+        console.error(errorMessage);
+        res.status(400).send(errorMessage);
     }
 });
 
@@ -108,7 +114,8 @@ productsRouter.delete("/:id", async (req: Request, res: Response) => {
             res.status(404).send(`Product with id ${id} does not exist`);
         }
     } catch (error) {
-        console.error(error.message);
-        res.status(400).send(error.message);
+        const errorMessage = (error instanceof Error) ? error.message : 'An unknown error occurred';
+        console.error(errorMessage);
+        res.status(400).send(errorMessage);
     }
 });
