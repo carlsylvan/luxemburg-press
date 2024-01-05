@@ -3,7 +3,8 @@ import './App.css'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import goblinImg from './assets/Goblin.png';
-import ProductsPage from './components/ProductsPage/ProductsPage';
+import ProductsPage from './pages/ProductsPage/ProductsPage';
+import ProductPage from './pages/ProductPage/ProductPage';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -19,6 +20,7 @@ function App() {
         <img id='goblin-img' src={goblinImg} ></img>
       </div>
       <ProductsPage></ProductsPage>
+      <ProductPage></ProductPage>
       <Footer></Footer>
     </>
   )
