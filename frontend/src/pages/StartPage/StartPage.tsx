@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import './startPage.css'
-import "../../index.css";
 import goblinImg from '../../assets/Goblin.png';
 
 function StartPage() {
