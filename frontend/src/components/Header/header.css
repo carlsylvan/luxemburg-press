@@ -13,3 +13,7 @@
     flex-direction: row;
     margin-right: 2rem;
 }
+
+.nav-list-item {
+    color: yellow;
+}
