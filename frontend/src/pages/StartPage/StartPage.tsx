@@ -6,15 +6,15 @@ function StartPage() {
   const [count, setCount] = useState(0)
 
   return (
-    <>
-      <h1>Luxemburg Press</h1>
+    <div className='start-page'>
+      <h1>LUXEMBURG PRESS</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           Du har klickat {count} gånger. Testa att klicka en gång till!
         </button>
         <img id='goblin-img' src={goblinImg} ></img>
       </div>
-    </>
+    </div>
   )
 }
 
