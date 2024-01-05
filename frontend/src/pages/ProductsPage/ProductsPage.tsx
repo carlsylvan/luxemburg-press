@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./productsPage.css";
+import "../../index.css";
 import { IProduct } from "../../interfaces/IProduct";
 import { getProducts } from "../../services/productsService";
 
