@@ -9,12 +9,16 @@ export default function Header() {
         <div className="nav">
         <li className="nav-list">
             <ul className="nav-list-item">
+            <a href="/">
                 Info
                 <img src={infoIcon}></img>
+            </a>
                 </ul>
             <ul className="nav-list-item">
+                <a href="/store">
                 Köp
                 <img src={storeIcon}></img>
+                </a>
             </ul>
             <ul className="nav-list-item">
                 Korg

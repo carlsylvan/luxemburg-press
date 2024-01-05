@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./productPage.css";
 import { getProductById } from "../../services/productsService";
 import { IProduct } from "../../interfaces/IProduct";
+import { useParams } from "react-router-dom";
 
 export default function ProductPage() {
     const [product, setProduct] = useState<IProduct>({
@@ -11,11 +12,14 @@ export default function ProductPage() {
         category: "Kategori"
       });
 
+      const { id } = useParams();
+
+
     useEffect(() => {
-        getProductById(product._id).then((product) => {
+        getProductById(id).then((product) => {
           setProduct(product);
         });
-    }, [product]);
+    });
     
     return (
         <div className="product-page">

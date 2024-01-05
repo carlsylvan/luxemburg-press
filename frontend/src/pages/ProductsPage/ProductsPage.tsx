@@ -15,11 +15,13 @@ export default function ProductsPage() {
     return (
         <div className="products-page">
             {products.map((product: IProduct) => (
+                <a href={`/store/${product._id}`}>
                 <div className="product-card" key={product._id}>
                     <p>{product.name}</p>
                     <p>{product.category}</p>
                     <p>{product.price}</p>
                 </div>
+                </a>
             ))}
         </div>
     );
