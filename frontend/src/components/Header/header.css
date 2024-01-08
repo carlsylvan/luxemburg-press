@@ -1,5 +1,5 @@
 .header {
-    background-color: blue;
+    background-color: #0037ff;
     display: flex;
     height: 10rem;
     align-items: center;
@@ -20,14 +20,12 @@
 }
 
 .nav-list-item {
-    color: yellow;
+color: #f6ff00;
 }
 
 h1 {
-    color: yellow;
-    font-size: 5em;
-    font-style: italic;
-    display: flex;
-    margin: 0;
-    margin-left: 1rem;
+color: #f6ff00;
+  font-size: 70px;
+  font-style: italic;
+  font-stretch: extra-condensed;
 }
