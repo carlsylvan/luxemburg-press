@@ -6,6 +6,7 @@ import infoIcon from '../../assets/circle-info-solid.svg'
 export default function Header() {
 
     return(<div className="header">
+              <h1>LUXEMBURG PRESS</h1>
         <div className="nav">
         <li className="nav-list">
             <ul className="nav-list-item">

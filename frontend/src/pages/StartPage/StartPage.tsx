@@ -7,7 +7,6 @@ function StartPage() {
 
   return (
     <div className='start-page'>
-      <h1>LUXEMBURG PRESS</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           Du har klickat {count} gånger. Testa att klicka en gång till!
