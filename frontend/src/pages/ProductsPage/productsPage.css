@@ -4,9 +4,8 @@
 
 .product-card {
     border: 1px solid black;
-    width: 200px;
-    height: 200px;
     color: black;
+    width: 400px;
 }
 
 .product-card p {
