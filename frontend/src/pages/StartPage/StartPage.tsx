@@ -35,7 +35,7 @@ function StartPage() {
     <img width="400" src={new URL('../../assets/images/Inwestor.jpg', import.meta.url).href} alt=""></img>
 
     <img width="400" src={new URL('../../assets/images/1.jpg', import.meta.url).href} alt=""></img>
-    <img width="400" src={new URL('../../assets/images/.jpg', import.meta.url).href} alt=""></img>
+    <img width="400" src={new URL('../../assets/images/february14.jpg', import.meta.url).href} alt=""></img>
 
     <img width="400" src={new URL('../../assets/images/Scan_20220917 (5).jpg', import.meta.url).href} alt=""></img>
     <img width="400" src={new URL('../../assets/images/Full front.jpg', import.meta.url).href} alt=""></img>
