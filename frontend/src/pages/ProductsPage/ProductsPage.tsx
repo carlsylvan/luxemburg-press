@@ -3,6 +3,7 @@ import "./productsPage.css";
 import { IProduct } from "../../interfaces/IProduct";
 import { getProducts } from "../../services/productsService";
 
+
 export default function ProductsPage() {
     const [products, setProducts] = useState<IProduct[]>([]);
 
@@ -20,6 +21,7 @@ export default function ProductsPage() {
                     <p>{product.name}</p>
                     <p>{product.category}</p>
                     <p>{product.price}</p>
+                    <img width={400} src={new URL(product.imgUrl, import.meta.url).href}></img>
                 </div>
                 </a>
             ))}
