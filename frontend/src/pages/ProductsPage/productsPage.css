@@ -1,9 +1,14 @@
 .products-page {
     border: 1px solid black;
-}
+    background-color: #0037ff;}
 
 .product-card {
     border: 1px solid black;
     width: 200px;
     height: 200px;
+    color: black;
+}
+
+.product-card p {
+    text-decoration: none;
 }

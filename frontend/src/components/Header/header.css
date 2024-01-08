@@ -1,5 +1,8 @@
 .header {
-    background-color: antiquewhite;
+    background-color: #0037ff;
+    display: flex;
+    height: 10rem;
+    align-items: center;
 }
 
 .nav {
@@ -12,4 +15,17 @@
     display: flex;
     flex-direction: row;
     margin-right: 2rem;
+    align-self: flex-end;
+}
+
+.nav-list-item {
+color: #f6ff00;
+}
+
+h1 {
+color: #f6ff00;
+  font-size: 70px;
+  font-style: italic;
+  font-stretch: extra-condensed;
+  margin-left: 1rem;
 }
