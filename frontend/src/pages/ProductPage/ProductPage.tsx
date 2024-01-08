@@ -9,7 +9,8 @@ export default function ProductPage() {
         _id: "0",
         name: "Produkt",
         price: 0,
-        category: "Kategori"
+        category: "Kategori",
+        imgUrl: ""
       });
 
       const { id } = useParams();
@@ -27,6 +28,7 @@ export default function ProductPage() {
                     <p>{product.name}</p>
                     <p>{product.category}</p>
                     <p>{product.price}</p>
+                    <img width={400} src={new URL(product.imgUrl, import.meta.url).href}></img>
                 </div>
         </div>
     );
