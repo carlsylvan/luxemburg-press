@@ -1,3 +1,13 @@
 .footer {
     background-color: blue;
+    /* height: 10rem; */
+    border-top: 1px solid black;
+    display: flex;
+    align-items: center;
+}
+
+.footer p {
+    color: yellow;
+    font-style: italic;
+    margin-left: 1rem;
 }
