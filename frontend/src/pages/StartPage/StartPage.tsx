@@ -14,45 +14,45 @@ function StartPage() {
       </div> */}
 
     <img width="1200" src={new URL('../../assets/images/R0020086.jpg', import.meta.url).href} alt=""></img>
-    <img width="400" src="DP2M0234.jpg" alt=""></img>
+    <img width="400" src="../../assets/images/DP2M0234.jpg" alt=""></img>
 
-    <img width="400" src="DP2M0096.jpg" alt=""></img>
-    <img width="400" src="DP2M0091.jpg" alt=""></img>
+    <img width="400" src="../../assets/images/DP2M0096.jpg" alt=""></img>
+    <img width="400" src="../../assets/images/DP2M0091.jpg" alt=""></img>
 
-    <img width="400" src="DP2M0137.jpg" alt=""></img>
-    <img width="400" src="DP2M0236.jpg" alt=""></img>
+    <img width="400" src="../../assets/images/DP2M0137.jpg" alt=""></img>
+    <img width="400" src="../../assets/images/DP2M0236.jpg" alt=""></img>
 
-    <img width="400" src="DP2M0246.jpg" alt=""></img>
-    <img width="400" src="500chf.jpg" alt=""></img>
+    <img width="400" src="../../assets/images/DP2M0246.jpg" alt=""></img>
+    <img width="400" src="../../assets/images/500chf.jpg" alt=""></img>
 
-    <img width="400" src="10-11.jpg" alt=""></img>
-    <img width="400" src="Hektar.jpg" alt=""></img>
+    <img width="400" src="../../assets/images/10-11.jpg" alt=""></img>
+    <img width="400" src="../../assets/images/Hektar.jpg" alt=""></img>
 
-    <img width="400" src="Scan_20220917 (2).jpg" alt=""></img>
-    <img width="400" src="Prospector.jpg" alt=""></img>
+    <img width="400" src="../../assets/images/Scan_20220917 (2).jpg" alt=""></img>
+    <img width="400" src="../../assets/images/Prospector.jpg" alt=""></img>
 
-    <img width="400" src="february11.jpg" alt=""></img>
-    <img width="400" src="Inwestor.jpg" alt=""></img>
+    <img width="400" src="../../assets/images/february11.jpg" alt=""></img>
+    <img width="400" src="../../assets/images/Inwestor.jpg" alt=""></img>
 
-    <img width="400" src="1.jpg" alt=""></img>
-    <img width="400" src="february14.jpg" alt=""></img>
+    <img width="400" src="../../assets/images/1.jpg" alt=""></img>
+    <img width="400" src="../../assets/images/.jpg" alt=""></img>
 
-    <img width="400" src="Scan_20220917 (5).jpg" alt=""></img>
-    <img width="400" src="Full front.jpg" alt=""></img>
+    <img width="400" src="../../assets/images/Scan_20220917 (5).jpg" alt=""></img>
+    <img width="400" src="../../assets/images/Full front.jpg" alt=""></img>
 
-    <img width="400" src="february16.jpg" alt=""></img>
-    <img width="400" src="Scan_20220917 (6).jpg" alt=""></img>
+    <img width="400" src="../../assets/images/february16.jpg" alt=""></img>
+    <img width="400" src="../../assets/images/Scan_20220917 (6).jpg" alt=""></img>
 
-    <img width="400" src="Inwestor2.jpg" alt=""></img>
-    <img width="400" src="18-19.jpg" alt=""></img>
+    <img width="400" src="../../assets/images/Inwestor2.jpg" alt=""></img>
+    <img width="400" src="../../assets/images/18-19.jpg" alt=""></img>
 
-    <img width="400" src="500chf2.jpg" alt=""></img>
-    <img width="400" src="february22.jpg" alt=""></img>
+    <img width="400" src="../../assets/images/500chf2.jpg" alt=""></img>
+    <img width="400" src="../../assets/images/february22.jpg" alt=""></img>
 
-    <img width="400" src="Prospector2.jpg" alt=""></img>
-    <img width="400" src="Hektar2.jpg" alt=""></img>
+    <img width="400" src="../../assets/images/Prospector2.jpg" alt=""></img>
+    <img width="400" src="../../assets/images/Hektar2.jpg" alt=""></img>
 
-    <img width="400" src="Scan_20220917 (4).jpg" alt=""></img>
+    <img width="400" src="../../assets/images/Scan_20220917 (4).jpg" alt=""></img>
     </div>
   )
 }
