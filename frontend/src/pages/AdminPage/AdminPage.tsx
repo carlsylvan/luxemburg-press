@@ -1,12 +1,22 @@
-import { useState } from "react";
+
+import { useState, useEffect } from "react";
 import "./adminPage.css";
 import { INewProduct } from "../../interfaces/INewProduct";
-import { createProduct } from "../../services/productsService";
-// import { IProduct } from "../../interfaces/IProduct";
+import { IProduct } from "../../interfaces/IProduct";
+import { createProduct, editProductById, getProducts } from "../../services/productsService";
 
 export default function AdminPage() {
     const [newProduct, setNewProduct] = useState<INewProduct>({ name: '', price: 0, category: '', imgUrl: '' });
-    // const [editProduct, setEditProduct] = useState<IProduct>();
+    const [products, setProducts] = useState<IProduct[]>([]);
+    const [editProduct, setEditProduct] = useState<IProduct | null>(null);
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            const fetchedProducts = await getProducts();
+            setProducts(fetchedProducts);
+        };
+        fetchProducts();
+    }, []);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setNewProduct({
@@ -15,12 +25,29 @@ export default function AdminPage() {
         });
     };
 
+    const handleEditInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (editProduct) {
+            setEditProduct({
+                ...editProduct,
+                [e.target.name]: e.target.name === 'price' ? parseFloat(e.target.value) : e.target.value
+            });
+        }
+    };
+
     const handleNewProductSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         createProduct(newProduct);
     };
 
-    return(<div id="admin-page">
+    const handleEditProductSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (editProduct) {
+            editProductById(editProduct._id, editProduct);
+        }
+    };
+
+    return (
+        <div id="admin-page">
             <form className="create-product-form" onSubmit={handleNewProductSubmit}>
                 <input
                     type="text"
@@ -53,8 +80,46 @@ export default function AdminPage() {
                 <button type="submit">Create Product</button>
             </form>
 
-        <div className="edit-product-form">
+            <select onChange={(e) => setEditProduct(products.find(p => p._id.toString() === e.target.value) || null)}>
+                <option value="">Select a Product</option>
+                {products.map(product => (
+                    <option key={product._id} value={product._id}>{product.name}</option>
+                ))}
+            </select>
+            {editProduct && (
+                <form className="edit-product-form" onSubmit={handleEditProductSubmit}>
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="Name"
+                        value={editProduct.name}
+                        onChange={handleEditInputChange}
+                    />
+                    <input
+                        type="number"
+                        name="price"
+                        placeholder="Price"
+                        value={editProduct.price}
+                        onChange={handleEditInputChange}
+                    />
+                    <input
+                        type="text"
+                        name="category"
+                        placeholder="Category"
+                        value={editProduct.category}
+                        onChange={handleEditInputChange}
+                    />
+                    <input
+                        type="string"
+                        name="imgUrl"
+                        placeholder="imgUrl"
+                        value={editProduct.imgUrl}
+                        onChange={handleEditInputChange}
+                    />
 
+                    <button type="submit">Update Product</button>
+                </form>
+            )}
         </div>
-    </div>)
+    );
 }
