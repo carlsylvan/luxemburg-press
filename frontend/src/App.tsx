@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import './App.css'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import goblinImg from './assets/Goblin.png';
@@ -10,7 +9,7 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <div id='app'>
+    <>
       <Header></Header>
       <h1>Luxemburg Press</h1>
       <div className="card">
@@ -22,7 +21,7 @@ function App() {
       <ProductsPage></ProductsPage>
       <ProductPage></ProductPage>
       <Footer></Footer>
-    </div>
+      </>
   )
 }
 

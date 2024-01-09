@@ -6,6 +6,8 @@ import Footer from './components/Footer/Footer.tsx'
 import ProductsPage from './pages/ProductsPage/ProductsPage.tsx'
 import ProductPage from './pages/ProductPage/ProductPage.tsx'
 import StartPage from './pages/StartPage/StartPage.tsx'
+import "./index.css"
+import AdminPage from './pages/AdminPage/AdminPage.tsx'
 
 const router = createBrowserRouter([
   {
@@ -37,6 +39,16 @@ const router = createBrowserRouter([
         <Footer></Footer>
         </>
     ),
+  },
+  {
+    path: '/admin',
+    element: (
+      <>
+      <Header></Header>
+        <AdminPage />
+        <Footer></Footer>
+        </>
+        ),
   },
 ]);
 
