@@ -4,7 +4,7 @@ import { INewProduct } from "../../interfaces/INewProduct";
 import { IProduct } from "../../interfaces/IProduct";
 
 export default function AdminPage() {
-    const [newProduct, setNewProduct] = useState<INewProduct>();
+    const [newProduct, setNewProduct] = useState<INewProduct>({ name: '', price: 0, category: '', imgUrl: '' });
     const [editProduct, setEditProduct] = useState<IProduct>();
 
     return(<div id="admin-page">
