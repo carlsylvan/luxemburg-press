@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import "./adminPage.css";
 import { INewProduct } from "../../interfaces/INewProduct";
 import { IProduct } from "../../interfaces/IProduct";
-import { createProduct, editProductById, getProducts } from "../../services/productsService";
+import { createProduct, deleteProductById, editProductById, getProducts } from "../../services/productsService";
 
 export default function AdminPage() {
     const [newProduct, setNewProduct] = useState<INewProduct>({ name: '', price: 0, category: '', imgUrl: '' });
@@ -43,6 +43,13 @@ export default function AdminPage() {
         e.preventDefault();
         if (editProduct) {
             editProductById(editProduct._id, editProduct);
+        }
+    };
+
+    const handleRemoveProduct = async () => {
+        if (editProduct && editProduct._id) {
+            await deleteProductById(editProduct._id);
+            // Optionally, update your products list or UI state here
         }
     };
 
@@ -118,6 +125,7 @@ export default function AdminPage() {
                     />
 
                     <button type="submit">Update Product</button>
+                    <button type="button" onClick={handleRemoveProduct}>Remove Product</button>
                 </form>
             )}
         </div>
