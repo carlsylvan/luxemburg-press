@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./adminPage.css";
 import { INewProduct } from "../../interfaces/INewProduct";
+import { createProduct } from "../../services/productsService";
 // import { IProduct } from "../../interfaces/IProduct";
 
 export default function AdminPage() {
@@ -14,13 +15,13 @@ export default function AdminPage() {
         });
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleNewProductSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        // Handle form submission here (e.g., send data to backend)
+        createProduct(newProduct);
     };
 
     return(<div id="admin-page">
-            <form className="create-product-form" onSubmit={handleSubmit}>
+            <form className="create-product-form" onSubmit={handleNewProductSubmit}>
                 <input
                     type="text"
                     name="name"
