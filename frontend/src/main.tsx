@@ -6,6 +6,7 @@ import Footer from './components/Footer/Footer.tsx'
 import ProductsPage from './pages/ProductsPage/ProductsPage.tsx'
 import ProductPage from './pages/ProductPage/ProductPage.tsx'
 import StartPage from './pages/StartPage/StartPage.tsx'
+import "./index.css"
 
 const router = createBrowserRouter([
   {
