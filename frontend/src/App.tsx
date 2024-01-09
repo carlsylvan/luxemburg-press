@@ -10,7 +10,7 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <div id='app'>
+    <>
       <Header></Header>
       <h1>Luxemburg Press</h1>
       <div className="card">
@@ -22,7 +22,7 @@ function App() {
       <ProductsPage></ProductsPage>
       <ProductPage></ProductPage>
       <Footer></Footer>
-    </div>
+      </>
   )
 }
 
