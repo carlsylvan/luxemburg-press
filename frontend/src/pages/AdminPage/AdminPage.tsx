@@ -1,11 +1,23 @@
 import { useState } from "react";
 import "./adminPage.css";
 import { INewProduct } from "../../interfaces/INewProduct";
-import { IProduct } from "../../interfaces/IProduct";
+// import { IProduct } from "../../interfaces/IProduct";
 
 export default function AdminPage() {
     const [newProduct, setNewProduct] = useState<INewProduct>({ name: '', price: 0, category: '', imgUrl: '' });
-    const [editProduct, setEditProduct] = useState<IProduct>();
+    // const [editProduct, setEditProduct] = useState<IProduct>();
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setNewProduct({
+            ...newProduct,
+            [e.target.name]: e.target.name === 'price' ? parseFloat(e.target.value) : e.target.value
+        });
+    };
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        // Handle form submission here (e.g., send data to backend)
+    };
 
     return(<div id="admin-page">
             <form className="create-product-form" onSubmit={handleSubmit}>
