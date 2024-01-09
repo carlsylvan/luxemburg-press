@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import { INewProduct } from "../interfaces/INewProduct";
+import { IProduct } from "../interfaces/IProduct";
 // import { IProduct } from "../interfaces/IProduct";
 export const URL = "http://localhost:3000";
 
@@ -46,9 +47,13 @@ export const deleteProductById = async (id: string) => {
   }
 };
 
-export const editProductById = async (id: string, updatedProduct: INewProduct) => {
+export const editProductById = async (id: string, updatedProduct: IProduct) => {
   try {
-    const response = await axios.put(URL + "/products/" + id, updatedProduct, {
+    // Destructure to exclude _id and get the rest of the properties
+    const { _id, ...productDataWithoutId } = updatedProduct;
+    console.log(_id);
+
+    const response = await axios.put(URL + "/products/" + id, productDataWithoutId, {
       headers: { "Content-Type": "application/json" },
     });
     return response.data;
