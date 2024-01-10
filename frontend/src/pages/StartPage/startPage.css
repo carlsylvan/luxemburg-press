@@ -1,3 +1,4 @@
-.start-page {
-        background-color: #0037ff;
+.start-page-images {
+    display: flex;
+    flex-wrap: wrap;
 }

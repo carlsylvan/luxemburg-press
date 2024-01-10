@@ -2,8 +2,9 @@ import './startPage.css'
 export default function StartPage() {
 
   return (
-    <div className='start-page'>
+    <div className='page'>
 
+    <div className='start-page-images'>
     <img width="1200" src={new URL('../../assets/images/R0020086.jpg', import.meta.url).href} alt=""></img>
     <img width="400" src={new URL('../../assets/images/DP2M0234.jpg', import.meta.url).href} alt=""></img>
 
@@ -44,6 +45,8 @@ export default function StartPage() {
     <img width="400" src={new URL('../../assets/images/Hektar2.jpg', import.meta.url).href} alt=""></img>
 
     <img width="400" src={new URL('../../assets/images/Scan_20220917 (4).jpg', import.meta.url).href} alt=""></img>
+    </div>
+    
     </div>
   )
 }

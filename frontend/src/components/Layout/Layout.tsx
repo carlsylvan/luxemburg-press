@@ -7,13 +7,13 @@ export default function Layout() {
 
     return(
     <div className="layout-wrapper">
-        <div className="shrink">
+        {/* <div className="shrink"> */}
         <Header/>
     <div className="page-wrapper">
         <Outlet/>
     </div>
         <Footer/>
         </div>
-    </div>
+    // </div>
     )
 }
