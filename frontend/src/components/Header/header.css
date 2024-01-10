@@ -3,7 +3,6 @@
     display: flex; 
     align-items: center; 
     height: 10rem;
-    border-bottom: 1px solid black;
     padding: 0; 
 }
 
