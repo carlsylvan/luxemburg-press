@@ -88,9 +88,9 @@ export default function AdminPage() {
             </form>
 
             <select onChange={(e) => setEditProduct(products.find(p => p._id.toString() === e.target.value) || null)}>
-                <option value="">Select a Product</option>
+                <option value="">Välj en produkt</option>
                 {products.map(product => (
-                    <option key={product._id} value={product._id}>{product.name}</option>
+                    <option key={product._id} value={product._id}>{product.name}: {product._id}</option>
                 ))}
             </select>
             {editProduct && (
