@@ -16,7 +16,7 @@ export default function ProductsPage() {
     }, []);
     
     return (
-        <div className="products-page">
+        <div className="page">
             {products.map((product: IProduct) => (
                 <Link to={`/store/${product._id}`}>
                 <ProductCard {...product}></ProductCard>
