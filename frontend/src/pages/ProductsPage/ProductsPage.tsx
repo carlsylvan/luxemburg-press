@@ -3,6 +3,7 @@ import "./productsPage.css";
 import { IProduct } from "../../interfaces/IProduct";
 import { getProducts } from "../../services/productsService";
 import ProductCard from "../../components/ProductCard/ProductCard";
+import { Link } from "react-router-dom";
 
 
 export default function ProductsPage() {
@@ -17,7 +18,7 @@ export default function ProductsPage() {
     return (
         <div className="products-page">
             {products.map((product: IProduct) => (
-                <a href={`/store/${product._id}`}>
+                <Link to={`/store/${product._id}`}>
                 {/* <div className="product-card" key={product._id}>
                     <p>Produkt: {product.name}</p>
                     <p>Kategori: {product.category}</p>
@@ -25,7 +26,7 @@ export default function ProductsPage() {
                     <img width={400} src={new URL(product.imgUrl, import.meta.url).href}></img>
                 </div> */}
                 <ProductCard {...product}></ProductCard>
-                </a>
+                </Link>
             ))}
         </div>
     );
