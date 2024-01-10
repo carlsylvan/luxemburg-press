@@ -1,21 +1,23 @@
 .header {
     background-color: #0037ff;
-    display: flex;
-    height: 10rem;
+    display: flex; /* Set header to be a flex container */
+    justify-content: space-between; /* Space out child elements */
     align-items: center;
+    height: 10rem;
+    border-bottom: 1px solid black;
 }
 
 .nav {
-    list-style: none;
     display: flex;
-    justify-content: end;
+    flex-grow: 1; /* Allow .nav to take up remaining space */
+    justify-content: flex-end; /* Align nav items to the right */
 }
 
 .nav-list {
     display: flex;
     flex-direction: row;
     margin-right: 2rem;
-    align-self: flex-end;
+    align-items: flex-end;
 }
 
 .nav-list-item {
