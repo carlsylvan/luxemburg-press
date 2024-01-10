@@ -7,11 +7,13 @@ export default function Layout() {
 
     return(
     <div className="layout-wrapper">
-    <Header/>
+        <div className="shrink">
+        <Header/>
     <div className="page-wrapper">
-    <Outlet/>
+        <Outlet/>
     </div>
-    <Footer/>
+        <Footer/>
+        </div>
     </div>
     )
 }

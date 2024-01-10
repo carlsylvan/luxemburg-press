@@ -29,12 +29,12 @@ export default function Header() {
             </li>
         </Link>
 
-        <Link style={{ textDecoration: 'none' }} to="/cart">
+        {/* <Link style={{ textDecoration: 'none' }} to="/cart"> */}
             <li className="nav-list-item">
                 Korg
                 <img src={cartIcon}></img>
             </li>
-        </Link>
+        {/* </Link> */}
         </ul>
         </div>
     </div>)
