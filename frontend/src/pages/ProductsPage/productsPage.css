@@ -2,14 +2,3 @@
     background-color: #0037ff;
     display: flex;
 }
-
-.product-card {
-    border: 1px solid black;
-    color: black;
-    width: 400px;
-}
-
-.product-card p {
-    text-decoration: none;
-    margin-left: 1em;
-}
