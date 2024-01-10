@@ -18,9 +18,9 @@ export default function ProductsPage() {
             {products.map((product: IProduct) => (
                 <a href={`/store/${product._id}`}>
                 <div className="product-card" key={product._id}>
-                    <p>{product.name}</p>
-                    <p>{product.category}</p>
-                    <p>{product.price}</p>
+                    <p>Produkt: {product.name}</p>
+                    <p>Kategori: {product.category}</p>
+                    <p>Pris: {product.price} kr</p>
                     <img width={400} src={new URL(product.imgUrl, import.meta.url).href}></img>
                 </div>
                 </a>
