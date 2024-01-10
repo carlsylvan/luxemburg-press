@@ -54,7 +54,7 @@ export default function AdminPage() {
     };
 
     return (
-        <div id="admin-page">
+        <div className="page">
             <form className="create-product-form" onSubmit={handleNewProductSubmit}>
                 <input
                     type="text"

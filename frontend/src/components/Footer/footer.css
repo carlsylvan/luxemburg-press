@@ -2,6 +2,7 @@
     background-color: #0037ff;
     display: flex;
     align-items: center;
+    height: 1rem;
 }
 
 .footer p {

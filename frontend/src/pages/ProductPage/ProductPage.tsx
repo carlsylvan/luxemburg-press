@@ -23,7 +23,7 @@ export default function ProductPage() {
     });
     
     return (
-        <div className="product-page">
+        <div className="page">
                 <ProductCard {...product}></ProductCard>
         </div>
     );
