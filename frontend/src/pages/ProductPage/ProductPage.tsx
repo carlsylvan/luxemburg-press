@@ -24,12 +24,6 @@ export default function ProductPage() {
     
     return (
         <div className="product-page">
-                {/* <div className="product-card">
-                    <p>Produkt: {product.name}</p>
-                    <p>Kategori: {product.category}</p>
-                    <p>Pris: {product.price} kr</p>
-                    <img width={400} src={new URL(product.imgUrl, import.meta.url).href}></img>
-                </div> */}
                 <ProductCard {...product}></ProductCard>
         </div>
     );
