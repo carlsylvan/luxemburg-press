@@ -8,6 +8,7 @@ import ProductPage from './pages/ProductPage/ProductPage.tsx'
 import StartPage from './pages/StartPage/StartPage.tsx'
 import "./index.css"
 import AdminPage from './pages/AdminPage/AdminPage.tsx'
+import InfoPage from './pages/InfoPage/InfoPage.tsx'
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,17 @@ const router = createBrowserRouter([
       </>
     ),
   },
+  {
+    path: '/info',
+    element: (
+      <>
+      <Header></Header>
+      <InfoPage></InfoPage>
+      <Footer></Footer>
+      </>
+    ),
+  },
+
   {
     path: '/store',
     element: (

@@ -7,28 +7,35 @@ import { Link } from "react-router-dom"
 export default function Header() {
 
     return(<div className="header">
+                <div className="nav">
+
               <Link style={{ textDecoration: 'none' }} to="/">
               <h1>LUXEMBURG PRESS</h1>
               </Link>
-        <div className="nav">
-        <li className="nav-list">
-        <Link style={{ textDecoration: 'none' }} to="/">
-            <ul className="nav-list-item">
+              
+        <ul className="nav-list">
+
+        <Link style={{ textDecoration: 'none' }} to="/info">
+            <li className="nav-list-item">
                 Info
                 <img src={infoIcon}></img>
-                </ul>
-                </Link>
-                <Link style={{ textDecoration: 'none' }} to="/store">
-            <ul className="nav-list-item">
+            </li>
+        </Link>
+
+        <Link style={{ textDecoration: 'none' }} to="/store">
+            <li className="nav-list-item">
                 Köp
                 <img src={storeIcon}></img>
-            </ul>
-            </Link>
-            <ul className="nav-list-item">
+            </li>
+        </Link>
+
+        <Link style={{ textDecoration: 'none' }} to="/cart">
+            <li className="nav-list-item">
                 Korg
                 <img src={cartIcon}></img>
-            </ul>
-        </li>
+            </li>
+        </Link>
+        </ul>
         </div>
     </div>)
 }

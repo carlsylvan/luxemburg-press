@@ -1,33 +1,36 @@
 .header {
     background-color: #0037ff;
     display: flex; 
-    justify-content: space-between;
-    align-items: center;
+    align-items: center; 
     height: 10rem;
-    border-bottom: 1px solid black;
+    padding: 0; 
 }
 
 .nav {
     display: flex;
-    flex-grow: 1;
-    justify-content: flex-end;
+    width: 100%;
+    justify-content: space-between;
 }
 
 .nav-list {
     display: flex;
     flex-direction: row;
+    align-items: flex-end; 
+    margin: 0; 
     margin-right: 2rem;
-    align-items: flex-end;
 }
 
 .nav-list-item {
-color: #f6ff00;
+    color: #f6ff00;
+    width: 75px;
+    list-style: none;
 }
 
 h1 {
-color: #f6ff00;
-  font-size: 70px;
-  font-style: italic;
-  font-stretch: extra-condensed;
-  margin-left: 1rem;
+    color: #f6ff00;
+    font-size: 70px;
+    font-style: italic;
+    font-stretch: extra-condensed;
+    margin: 0;
+    margin-left: 1rem;
 }

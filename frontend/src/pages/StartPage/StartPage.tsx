@@ -1,17 +1,8 @@
-// import { useState } from 'react'
 import './startPage.css'
-// import goblinImg from '../../assets/Goblin.png';
-function StartPage() {
-  // const [count, setCount] = useState(0)
+export default function StartPage() {
 
   return (
     <div className='start-page'>
-      {/* <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          Du har klickat {count} gånger. Testa att klicka en gång till!
-        </button>
-        <img id='goblin-img' src={goblinImg} ></img>
-      </div> */}
 
     <img width="1200" src={new URL('../../assets/images/R0020086.jpg', import.meta.url).href} alt=""></img>
     <img width="400" src={new URL('../../assets/images/DP2M0234.jpg', import.meta.url).href} alt=""></img>
@@ -56,5 +47,3 @@ function StartPage() {
     </div>
   )
 }
-
-export default StartPage
