@@ -15,7 +15,7 @@ export default function Header() {
               
         <ul className="nav-list">
 
-        <Link style={{ textDecoration: 'none' }} to="/">
+        <Link style={{ textDecoration: 'none' }} to="/info">
             <li className="nav-list-item">
                 Info
                 <img src={infoIcon}></img>
