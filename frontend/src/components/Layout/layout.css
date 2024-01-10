@@ -1,5 +1,5 @@
 .layout-wrapper {
-    height: 100vh;
+    min-height: 100vh;
     /* border: 1px solid red; */
     display: flex;
     flex-direction: column;
@@ -8,6 +8,8 @@
 
 .page-wrapper {
     height: 100%;
+    background-color: #0037ff;
+    flex: 1;
 }
 
 .page {

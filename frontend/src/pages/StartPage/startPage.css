@@ -1,4 +1,7 @@
-.start-page-images {
-    display: flex;
-    flex-wrap: wrap;
+.start-page-img-big {
+    width: 1200px;
+}
+
+.start-page-img-small {
+    width: 400px;
 }
