@@ -1,7 +1,7 @@
 .header {
     background-color: #0037ff;
-    display: flex; /* Set header to be a flex container */
-    justify-content: space-between; /* Space out child elements */
+    display: flex; 
+    justify-content: space-between;
     align-items: center;
     height: 10rem;
     border-bottom: 1px solid black;
@@ -9,8 +9,8 @@
 
 .nav {
     display: flex;
-    flex-grow: 1; /* Allow .nav to take up remaining space */
-    justify-content: flex-end; /* Align nav items to the right */
+    flex-grow: 1;
+    justify-content: flex-end;
 }
 
 .nav-list {
