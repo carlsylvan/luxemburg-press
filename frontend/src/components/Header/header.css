@@ -1,5 +1,5 @@
 .header {
-    background-color: #0037ff;
+    background-color: var(--blue);
     display: flex; 
     align-items: center; 
     height: 10rem;
@@ -21,14 +21,14 @@
 }
 
 .nav-list-item {
-    color: #f6ff00;
+    color: var(--yellow);
     width: 75px;
     list-style: none;
     cursor: pointer;
 }
 
 h1 {
-    color: #f6ff00;
+    color: var(--yellow);
     font-size: 70px;
     font-style: italic;
     font-stretch: extra-condensed;

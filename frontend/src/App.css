@@ -1,3 +1,9 @@
+:root {
+    --blue: #0037ff;
+    --yellow: #f6ff00;
+  }
+  
+
 body {
     margin: 0;
 }
