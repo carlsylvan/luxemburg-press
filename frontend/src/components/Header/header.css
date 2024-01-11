@@ -24,6 +24,7 @@
     color: #f6ff00;
     width: 75px;
     list-style: none;
+    cursor: pointer;
 }
 
 h1 {
