@@ -1,6 +1,6 @@
 import { RouterProvider } from 'react-router-dom';
 import { router } from './router';
-import "./App.css"
+import "./index.css"
 import { CartContext } from './contexts/CartContext';
 import { useState } from 'react';
 import { ICart } from './interfaces/ICart';

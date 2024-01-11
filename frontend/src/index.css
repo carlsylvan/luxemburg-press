@@ -1,7 +1,12 @@
-#root {
+:root {
+    --blue: #0037ff;
+    --yellow: #f6ff00;
+  }
+
+body {
     margin: 0;
     max-width: 1500px;
 }
-body {
-    margin: 0;
+* {
+    box-sizing: border-box;
 }
