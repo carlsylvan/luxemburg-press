@@ -1,41 +1,48 @@
-import "./header.css"
-import cartIcon from '../../assets/cart-shopping-solid.svg'
-import storeIcon from '../../assets/store-solid.svg'
-import infoIcon from '../../assets/circle-info-solid.svg'
-import { Link } from "react-router-dom"
+import "./header.css";
+import cartIcon from '../../assets/cart-shopping-solid.svg';
+import storeIcon from '../../assets/store-solid.svg';
+import infoIcon from '../../assets/circle-info-solid.svg';
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import Cart from "../Cart/Cart";
 
 export default function Header() {
+    const [cartOpen, setCartOpen] = useState(false);
 
-    return(<div className="header">
-                <div className="nav">
+    const toggleCart = () => {
+        setCartOpen(!cartOpen);
+    };
 
-              <Link style={{ textDecoration: 'none' }} to="/">
-              <h1>LUXEMBURG PRESS</h1>
-              </Link>
+    return (
+        <div className="header">
+            <div className="nav">
+                <Link style={{ textDecoration: 'none' }} to="/">
+                    <h1>LUXEMBURG PRESS</h1>
+                </Link>
               
-        <ul className="nav-list">
+                <ul className="nav-list">
+                    <Link style={{ textDecoration: 'none' }} to="/info">
+                        <li className="nav-list-item">
+                            Info
+                            <img src={infoIcon} alt="Info"></img>
+                        </li>
+                    </Link>
 
-        <Link style={{ textDecoration: 'none' }} to="/info">
-            <li className="nav-list-item">
-                Info
-                <img src={infoIcon}></img>
-            </li>
-        </Link>
+                    <Link style={{ textDecoration: 'none' }} to="/store">
+                        <li className="nav-list-item">
+                            Köp
+                            <img src={storeIcon} alt="Store"></img>
+                        </li>
+                    </Link>
 
-        <Link style={{ textDecoration: 'none' }} to="/store">
-            <li className="nav-list-item">
-                Köp
-                <img src={storeIcon}></img>
-            </li>
-        </Link>
+                    <li onClick={toggleCart} className="nav-list-item">
+                        Korg
+                        <img src={cartIcon} alt="Cart"></img>
+                    </li>
+                </ul>
+            </div>
 
-        {/* <Link style={{ textDecoration: 'none' }} to="/cart"> */}
-            <li className="nav-list-item">
-                Korg
-                <img src={cartIcon}></img>
-            </li>
-        {/* </Link> */}
-        </ul>
+            {cartOpen && <Cart></Cart>}
         </div>
-    </div>)
+    );
 }
