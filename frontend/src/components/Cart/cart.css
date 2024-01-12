@@ -11,6 +11,13 @@
     margin-bottom: 1rem;
 }
 
+#cart-item-product-name {
+    text-decoration: underline;
+}
+
+#cart-total-cost {
+    margin-bottom: 1rem;
+}
 
 .cart-checkout-button {
     width: 100%;
