@@ -30,7 +30,7 @@ export default function Cart() {
             </div>
 
             <Link to="/checkout">
-                <button className="cart-checkout-button">Betala</button>
+                <button className="cart-checkout-button">Checkout</button>
             </Link>
         </div>
     );
