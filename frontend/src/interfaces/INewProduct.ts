@@ -1,6 +1,14 @@
 export interface INewProduct {
-    name: string;
-    price: number;
-    category: string;
-    imgUrl: string;
-  }
+  _id: null;
+  title: string;
+  author: string;
+  year: number;
+  price: number;
+  ISBN: string;
+  publisher: string;
+  category: string;
+  language: string;
+  pageCount: number;
+  description: string;
+  imgUrl: string;
+}

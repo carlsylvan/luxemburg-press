@@ -2,6 +2,7 @@ import axios from "axios";
 
 // import { INewProduct } from "../interfaces/INewProduct";
 import { IProduct } from "../interfaces/IProduct";
+import { INewProduct } from "../interfaces/INewProduct";
 // import { IProduct } from "../interfaces/IProduct";
 export const URL = "http://localhost:3000";
 
@@ -25,7 +26,7 @@ export const getProductById = async (id: string | undefined) => {
   }
 };
 
-export const createProduct = async (newProduct: IProduct) => {
+export const createProduct = async (newProduct: INewProduct) => {
   try {
     const response = await axios.post(URL + "/products", newProduct, {
       headers: { "Content-Type": "application/json" },

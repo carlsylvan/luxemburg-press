@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import "./adminPage.css";
 import { IProduct } from "../../interfaces/IProduct";
 import { createProduct, deleteProductById, editProductById, getProducts } from "../../services/productsService";
+import { INewProduct } from "../../interfaces/INewProduct";
 
 export default function AdminPage() {
     const initialProductState = {
-        _id: '',
+        _id: null,
         title: '',
         author: '',
         year: 0,
@@ -19,7 +20,7 @@ export default function AdminPage() {
         imgUrl: ''
     };
 
-    const [newProduct, setNewProduct] = useState<IProduct>(initialProductState);
+    const [newProduct, setNewProduct] = useState<INewProduct>(initialProductState);
     const [products, setProducts] = useState<IProduct[]>([]);
     const [editProduct, setEditProduct] = useState<IProduct | null>(null);
 
@@ -68,7 +69,7 @@ export default function AdminPage() {
         }
     };
 
-    const renderProductForm = (product: IProduct, handleInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void) => (
+    const renderProductForm = (product: IProduct | INewProduct, handleInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void) => (
         <>
         <label htmlFor="title">Title</label>
         <input type="text" id="title" name="title" className="admin-input" placeholder="Title" value={product.title} onChange={handleInputChange} />
