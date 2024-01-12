@@ -1,0 +1,7 @@
+.cart {
+    position: absolute;
+    top: 8rem;
+    right: 1rem; 
+    width: 200px; 
+    background-color: var(--yellow);
+}
