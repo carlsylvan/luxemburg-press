@@ -1,0 +1,11 @@
+.product-information {
+    width: 50%;
+}
+
+.product-information p {
+    padding: 0.5rem;
+}
+
+.product-information img {
+    margin: 2rem;
+} 

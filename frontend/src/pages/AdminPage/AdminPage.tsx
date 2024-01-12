@@ -90,16 +90,16 @@ export default function AdminPage() {
             <select onChange={(e) => setEditProduct(products.find(p => p._id.toString() === e.target.value) || null)}>
                 <option value="">Välj en produkt</option>
                 {products.map(product => (
-                    <option key={product._id} value={product._id}>{product.name}: {product._id}</option>
+                    <option key={product._id} value={product._id}>{product.title}: {product._id}</option>
                 ))}
             </select>
             {editProduct && (
                 <form className="edit-product-form" onSubmit={handleEditProductSubmit}>
                     <input
                         type="text"
-                        name="name"
-                        placeholder="Name"
-                        value={editProduct.name}
+                        name="title"
+                        placeholder="title"
+                        value={editProduct.title}
                         onChange={handleEditInputChange}
                     />
                     <input

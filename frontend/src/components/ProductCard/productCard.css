@@ -1,10 +1,17 @@
 .product-card {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     color: black;
-    width: 400px;
+    width: 500px;
+    height: 500px;
 }
 
 .product-card p {
     text-decoration: none;
     margin-left: 1em;
+}
+
+.product-card img {
+    width: 80%;
+    text-align: center;
+
 }
