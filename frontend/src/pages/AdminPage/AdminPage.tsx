@@ -1,12 +1,25 @@
-
 import { useState, useEffect } from "react";
 import "./adminPage.css";
-import { INewProduct } from "../../interfaces/INewProduct";
 import { IProduct } from "../../interfaces/IProduct";
 import { createProduct, deleteProductById, editProductById, getProducts } from "../../services/productsService";
 
 export default function AdminPage() {
-    const [newProduct, setNewProduct] = useState<INewProduct>({ name: '', price: 0, category: '', imgUrl: '' });
+    const initialProductState = {
+        _id: '',
+        title: '',
+        author: '',
+        year: 0,
+        price: 0,
+        ISBN: '',
+        publisher: '',
+        category: '',
+        language: '',
+        pageCount: 0,
+        description: '',
+        imgUrl: ''
+    };
+
+    const [newProduct, setNewProduct] = useState<IProduct>(initialProductState);
     const [products, setProducts] = useState<IProduct[]>([]);
     const [editProduct, setEditProduct] = useState<IProduct | null>(null);
 
@@ -18,22 +31,24 @@ export default function AdminPage() {
         fetchProducts();
     }, []);
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target as HTMLInputElement | HTMLTextAreaElement;
         setNewProduct({
             ...newProduct,
-            [e.target.name]: e.target.name === 'price' ? parseFloat(e.target.value) : e.target.value
+            [name]: name === 'year' || name === 'price' || name === 'pageCount' ? parseFloat(value) || 0 : value
         });
     };
-
-    const handleEditInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    
+    const handleEditInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         if (editProduct) {
+            const { name, value } = e.target as HTMLInputElement | HTMLTextAreaElement;
             setEditProduct({
                 ...editProduct,
-                [e.target.name]: e.target.name === 'price' ? parseFloat(e.target.value) : e.target.value
+                [name]: name === 'year' || name === 'price' || name === 'pageCount' ? parseFloat(value) || 0 : value
             });
         }
     };
-
+    
     const handleNewProductSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         createProduct(newProduct);
@@ -53,77 +68,38 @@ export default function AdminPage() {
         }
     };
 
+    const renderProductForm = (product: IProduct, handleInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void) => (
+        <>
+            <input type="text" name="title" placeholder="Title" value={product.title} onChange={handleInputChange} />
+            <input type="text" name="author" placeholder="Author" value={product.author} onChange={handleInputChange} />
+            <input type="number" name="year" placeholder="Year" value={product.year} onChange={handleInputChange} />
+            <input type="number" name="price" placeholder="Price" value={product.price} onChange={handleInputChange} />
+            <input type="text" name="ISBN" placeholder="ISBN" value={product.ISBN} onChange={handleInputChange} />
+            <input type="text" name="publisher" placeholder="Publisher" value={product.publisher} onChange={handleInputChange} />
+            <input type="text" name="category" placeholder="Category" value={product.category} onChange={handleInputChange} />
+            <input type="text" name="language" placeholder="Language" value={product.language} onChange={handleInputChange} />
+            <input type="number" name="pageCount" placeholder="Page Count" value={product.pageCount} onChange={handleInputChange} />
+            <textarea name="description" placeholder="Description" value={product.description} onChange={handleInputChange} />
+            <input type="text" name="imgUrl" placeholder="Image URL" value={product.imgUrl} onChange={handleInputChange} />
+        </>
+    );
+
     return (
         <div className="page">
             <form className="create-product-form" onSubmit={handleNewProductSubmit}>
-                <input
-                    type="text"
-                    name="name"
-                    placeholder="Name"
-                    value={newProduct.name}
-                    onChange={handleInputChange}
-                />
-                <input
-                    type="number"
-                    name="price"
-                    placeholder="Price"
-                    value={newProduct.price}
-                    onChange={handleInputChange}
-                />
-                <input
-                    type="text"
-                    name="category"
-                    placeholder="Category"
-                    value={newProduct.category}
-                    onChange={handleInputChange}
-                />
-                <input
-                    type="text"
-                    name="imgUrl"
-                    placeholder="Image URL"
-                    value={newProduct.imgUrl}
-                    onChange={handleInputChange}
-                />
+                {renderProductForm(newProduct, handleInputChange)}
                 <button type="submit">Create Product</button>
             </form>
 
-            <select onChange={(e) => setEditProduct(products.find(p => p._id.toString() === e.target.value) || null)}>
-                <option value="">Välj en produkt</option>
+            <select onChange={(e) => setEditProduct(products.find(p => p._id === e.target.value) || null)}>
+                <option value="">Select a Product</option>
                 {products.map(product => (
                     <option key={product._id} value={product._id}>{product.title}: {product._id}</option>
                 ))}
             </select>
             {editProduct && (
                 <form className="edit-product-form" onSubmit={handleEditProductSubmit}>
-                    <input
-                        type="text"
-                        name="title"
-                        placeholder="title"
-                        value={editProduct.title}
-                        onChange={handleEditInputChange}
-                    />
-                    <input
-                        type="number"
-                        name="price"
-                        placeholder="Price"
-                        value={editProduct.price}
-                        onChange={handleEditInputChange}
-                    />
-                    <input
-                        type="text"
-                        name="category"
-                        placeholder="Category"
-                        value={editProduct.category}
-                        onChange={handleEditInputChange}
-                    />
-                    <input
-                        type="string"
-                        name="imgUrl"
-                        placeholder="imgUrl"
-                        value={editProduct.imgUrl}
-                        onChange={handleEditInputChange}
-                    />
-
+                    {renderProductForm(editProduct, handleEditInputChange)}
                     <button type="submit">Update Product</button>
                     <button type="button" onClick={handleRemoveProduct}>Remove Product</button>
                 </form>
