@@ -1,6 +1,6 @@
 import "./header.css";
 import cartIcon from '../../assets/icons/cart-shopping-solid.svg';
-import storeIcon from '../../assets/icons/store-solid.svg';
+import euIcon from '../../assets/icons/euro-sign-solid.svg';
 import infoIcon from '../../assets/icons/circle-info-solid.svg';
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -30,13 +30,13 @@ export default function Header() {
 
                     <Link style={{ textDecoration: 'none' }} to="/store">
                         <li className="nav-list-item">
-                            Köp
-                            <img src={storeIcon} alt="Store"></img>
+                            Buy
+                            <img src={euIcon} alt="Store"></img>
                         </li>
                     </Link>
 
                     <li onClick={toggleCart} className="nav-list-item">
-                        Korg
+                        Cart
                         <img src={cartIcon} alt="Cart"></img>
                     </li>
                 </ul>

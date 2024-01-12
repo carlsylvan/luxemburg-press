@@ -17,6 +17,7 @@ export default function ProductsPage() {
     
     return (
         <div className="page">
+            <div className="products-page">
             <div className="products-list">
             {products.map((product: IProduct) => (
                 <Link to={`/store/${product._id}`}>
@@ -24,7 +25,7 @@ export default function ProductsPage() {
                 </Link>
             ))}
         </div>
-
+        </div>
         </div>
     );
 }

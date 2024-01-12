@@ -60,9 +60,9 @@ export default function ProductPage() {
     return (
         <div className="page">
         <div className="product-information">
-            <p>Titel: {product.title}</p>
-            <p>Författare: {product.author}</p>
-            <p>Pris: {product.price} kr</p>
+            <p>Title: {product.title}</p>
+            <p>Author: {product.author}</p>
+            <p>Price: {product.price} kr</p>
             <p>{product.description}</p>
             <img width={400} src={new URL(product.imgUrl, import.meta.url).href}></img>
             <button onClick={() => addToCart(product)}>Add to cart</button>
