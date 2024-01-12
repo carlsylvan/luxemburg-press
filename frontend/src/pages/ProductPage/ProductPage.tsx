@@ -3,7 +3,6 @@ import "./productPage.css";
 import { getProductById } from "../../services/productsService";
 import { IProduct } from "../../interfaces/IProduct";
 import { useParams } from "react-router-dom";
-import ProductCard from "../../components/ProductCard/ProductCard";
 import { CartContext } from '../../contexts/CartContext';
 
 export default function ProductPage() {
@@ -60,8 +59,14 @@ export default function ProductPage() {
 
     return (
         <div className="page">
-            <ProductCard {...product}></ProductCard>
+        <div className="product-information">
+            <p>Titel: {product.title}</p>
+            <p>Författare: {product.author}</p>
+            <p>Pris: {product.price} kr</p>
+            <p>{product.description}</p>
+            <img width={400} src={new URL(product.imgUrl, import.meta.url).href}></img>
             <button onClick={() => addToCart(product)}>Add to cart</button>
+        </div>            
         </div>
     );
 }
