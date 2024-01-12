@@ -1,0 +1,81 @@
+
+.admin-container {
+    max-width: 960px;
+    margin: 20px auto;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.admin-form {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.admin-input:focus {
+    border-color: #0062cc;
+    box-shadow: 0 0 0 2px rgba(0, 98, 204, 0.2);
+    outline: none;
+}
+
+.admin-button:hover {
+    background-color: #218838;
+}
+
+.admin-button-remove:hover {
+    background-color: #c82333;
+}
+
+.admin-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.admin-input {
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.admin-textarea {
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    resize: vertical;
+    margin-bottom: 15px;
+    font-size: 16px;
+    min-height: 100px;
+}
+
+.admin-select {
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    background-color: white;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.admin-button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    font-size: 16px;
+}
+
+.admin-button-remove {
+    background-color: #dc3545;
+}
+

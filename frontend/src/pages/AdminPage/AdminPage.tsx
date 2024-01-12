@@ -70,40 +70,62 @@ export default function AdminPage() {
 
     const renderProductForm = (product: IProduct, handleInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void) => (
         <>
-            <input type="text" name="title" placeholder="Title" value={product.title} onChange={handleInputChange} />
-            <input type="text" name="author" placeholder="Author" value={product.author} onChange={handleInputChange} />
-            <input type="number" name="year" placeholder="Year" value={product.year} onChange={handleInputChange} />
-            <input type="number" name="price" placeholder="Price" value={product.price} onChange={handleInputChange} />
-            <input type="text" name="ISBN" placeholder="ISBN" value={product.ISBN} onChange={handleInputChange} />
-            <input type="text" name="publisher" placeholder="Publisher" value={product.publisher} onChange={handleInputChange} />
-            <input type="text" name="category" placeholder="Category" value={product.category} onChange={handleInputChange} />
-            <input type="text" name="language" placeholder="Language" value={product.language} onChange={handleInputChange} />
-            <input type="number" name="pageCount" placeholder="Page Count" value={product.pageCount} onChange={handleInputChange} />
-            <textarea name="description" placeholder="Description" value={product.description} onChange={handleInputChange} />
-            <input type="text" name="imgUrl" placeholder="Image URL" value={product.imgUrl} onChange={handleInputChange} />
-        </>
-    );
+        <label htmlFor="title">Title</label>
+        <input type="text" id="title" name="title" className="admin-input" placeholder="Title" value={product.title} onChange={handleInputChange} />
+
+        <label htmlFor="author">Author</label>
+        <input type="text" id="author" name="author" className="admin-input" placeholder="Author" value={product.author} onChange={handleInputChange} />
+
+        <label htmlFor="year">Year</label>
+        <input type="number" id="year" name="year" className="admin-input" placeholder="Year" value={product.year} onChange={handleInputChange} />
+
+        <label htmlFor="price">Price</label>
+        <input type="number" id="price" name="price" className="admin-input" placeholder="Price" value={product.price} onChange={handleInputChange} />
+
+        <label htmlFor="isbn">ISBN</label>
+        <input type="text" id="isbn" name="ISBN" className="admin-input" placeholder="ISBN" value={product.ISBN} onChange={handleInputChange} />
+
+        <label htmlFor="publisher">Publisher</label>
+        <input type="text" id="publisher" name="publisher" className="admin-input" placeholder="Publisher" value={product.publisher} onChange={handleInputChange} />
+
+        <label htmlFor="category">Category</label>
+        <input type="text" id="category" name="category" className="admin-input" placeholder="Category" value={product.category} onChange={handleInputChange} />
+
+        <label htmlFor="language">Language</label>
+        <input type="text" id="language" name="language" className="admin-input" placeholder="Language" value={product.language} onChange={handleInputChange} />
+
+        <label htmlFor="pageCount">Page Count</label>
+        <input type="number" id="pageCount" name="pageCount" className="admin-input" placeholder="Page Count" value={product.pageCount} onChange={handleInputChange} />
+
+        <label htmlFor="description">Description</label>
+        <textarea id="description" name="description" className="admin-textarea" placeholder="Description" value={product.description} onChange={handleInputChange}></textarea>
+
+        <label htmlFor="imgUrl">Image URL</label>
+        <input type="text" id="imgUrl" name="imgUrl" className="admin-input" placeholder="Image URL" value={product.imgUrl} onChange={handleInputChange} />
+    </>    );
 
     return (
         <div className="page">
-            <form className="create-product-form" onSubmit={handleNewProductSubmit}>
+        <div className="admin-container">
+            <form className="admin-form" onSubmit={handleNewProductSubmit}>
                 {renderProductForm(newProduct, handleInputChange)}
-                <button type="submit">Create Product</button>
+                <button className="admin-button" type="submit">Create Product</button>
             </form>
 
-            <select onChange={(e) => setEditProduct(products.find(p => p._id === e.target.value) || null)}>
-                <option value="">Select a Product</option>
-                {products.map(product => (
-                    <option key={product._id} value={product._id}>{product.title}: {product._id}</option>
-                ))}
-            </select>
-            {editProduct && (
-                <form className="edit-product-form" onSubmit={handleEditProductSubmit}>
+            <select className="admin-select" onChange={(e) => setEditProduct(products.find(p => p._id === e.target.value) || null)}>
+    <option value="">Select a Product</option>
+    {products.map(product => (
+        <option key={product._id} value={product._id}>
+            {`${product.title} - ${product.author} (${product.year})`}
+        </option>
+    ))}
+</select>            {editProduct && (
+                <form className="admin-form" onSubmit={handleEditProductSubmit}>
                     {renderProductForm(editProduct, handleEditInputChange)}
-                    <button type="submit">Update Product</button>
-                    <button type="button" onClick={handleRemoveProduct}>Remove Product</button>
+                    <button className="admin-button" type="submit">Update Product</button>
+                    <button className="admin-button admin-button-remove" type="button" onClick={handleRemoveProduct}>Remove Product</button>
                 </form>
             )}
-        </div>
+        </div>        </div>
     );
 }
