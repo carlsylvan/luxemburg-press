@@ -1,12 +1,12 @@
 .footer {
-    background-color: #0037ff;
+    background-color: var(--blue);
     display: flex;
     align-items: center;
     height: 2rem;
 }
 
 .footer p {
-    color: #f6ff00;
+    color: var(--yellow);
     font-style: italic;
     font-size: 15px;
     margin-left: 1rem;

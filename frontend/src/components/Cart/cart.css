@@ -1,0 +1,25 @@
+.cart {
+    position: absolute;
+    top: 8rem;
+    right: 1rem; 
+    width: 200px; 
+    background-color: var(--yellow);
+    padding: 1rem;
+}
+
+.cart-item {
+    margin-bottom: 1rem;
+}
+
+#cart-item-product-name {
+    text-decoration: underline;
+}
+
+#cart-total-cost {
+    margin-bottom: 1rem;
+}
+
+.cart-checkout-button {
+    width: 100%;
+    height: 2rem;
+}
