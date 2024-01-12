@@ -19,6 +19,7 @@ export default function Cart() {
                     <div>Totalkostnad {item.product.price * item.quantity} kr</div>
                 </div>
             ))}
+            <button className="cart-checkout-button">Betala</button>
         </div>
     );
 }
