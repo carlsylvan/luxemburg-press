@@ -28,7 +28,7 @@ export default function CheckoutPage() {
     };
 
     if (!cart || cart.items.length === 0) {
-        return <div className="checkout-no-items">Lägg till produkter</div>;
+        return <div className="checkout-no-items">Add products</div>;
     }
 
     const totalCost = cart.items.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
@@ -39,7 +39,7 @@ export default function CheckoutPage() {
                 {cart.items.map((item, index) => (
                     <div key={index} className="checkout-item">
                         <div id="checkout-item-product-name">{item.product.title}</div>
-                        <div>Antal: {item.quantity}</div>
+                        <div>Quantity: {item.quantity}</div>
                     </div>
                 ))}
                 <div id="checkout-total-cost">{totalCost} kr</div>
@@ -50,31 +50,31 @@ export default function CheckoutPage() {
                         name="name"
                         value={formData.name}
                         onChange={handleInputChange}
-                        placeholder="Namn"
+                        placeholder="Name"
                     />
                     <input
                         type="text"
                         name="address"
                         value={formData.address}
                         onChange={handleInputChange}
-                        placeholder="Adress"
+                        placeholder="Address"
                     />
                     <input
                         type="tel"
                         name="phoneNumber"
                         value={formData.phoneNumber}
                         onChange={handleInputChange}
-                        placeholder="Telefonnummer"
+                        placeholder="Phone number"
                     />
                     <input
                         type="email"
                         name="email"
                         value={formData.email}
                         onChange={handleInputChange}
-                        placeholder="E-post"
+                        placeholder="E-mail"
                     />
                     {/* Add more input fields as needed */}
-                    <button type="submit">Skicka beställning</button>
+                    <button type="submit">Order</button>
                 </form>
             </div>
             </div>
