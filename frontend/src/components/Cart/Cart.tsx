@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { CartContext } from "../../contexts/CartContext";
 import "./cart.css"
+import { Link } from "react-router-dom";
 
 export default function Cart() {
     const { cart } = useContext(CartContext);
@@ -11,6 +12,7 @@ export default function Cart() {
 
     return (
         <div className="cart">
+            {/* <button className="cart-close-button"></button> */}
             {cart.items.map((item, index) => (
                 <div key={index} className="cart-item">
                     <div>{item.product.name}</div>
@@ -19,7 +21,9 @@ export default function Cart() {
                     <div>Totalkostnad {item.product.price * item.quantity} kr</div>
                 </div>
             ))}
-            <button className="cart-checkout-button">Betala</button>
+            <Link to="/checkout">
+                <button className="cart-checkout-button">Betala</button>
+            </Link>
         </div>
     );
 }
