@@ -9,7 +9,7 @@ import { CartContext } from '../../contexts/CartContext';
 export default function ProductPage() {
     const [product, setProduct] = useState<IProduct>({
         _id: "0",
-        name: "Produkt",
+        title: "Produkt",
         price: 0,
         category: "Kategori",
         imgUrl: ""

@@ -38,7 +38,7 @@ export default function CheckoutPage() {
             <div className="checkout">
                 {cart.items.map((item, index) => (
                     <div key={index} className="checkout-item">
-                        <div id="checkout-item-product-name">{item.product.name}</div>
+                        <div id="checkout-item-product-name">{item.product.title}</div>
                         <div>Antal: {item.quantity}</div>
                     </div>
                 ))}
