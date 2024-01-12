@@ -4,7 +4,7 @@ export interface IProduct {
   author: string;
   year: number;
   price: number;
-  ISBN: number;
+  ISBN: string;
   publisher: string;
   category: string;
   language: string;

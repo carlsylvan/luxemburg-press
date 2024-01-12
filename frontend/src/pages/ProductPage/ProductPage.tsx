@@ -12,7 +12,7 @@ export default function ProductPage() {
       author: "string",
       year: 0,
       price: 0,
-      ISBN: 0,
+      ISBN: "string",
       publisher: "string",
       category: "string",
       language: "string",

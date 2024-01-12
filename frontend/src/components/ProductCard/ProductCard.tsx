@@ -4,7 +4,7 @@ import "./productCard.css";
 export default function ProductCard({ title, author, price, imgUrl }: IProduct) {
     return (
         <div className="product-card">
-            <marquee>Featured Product!</marquee>
+            {/* <marquee>Featured Product!</marquee> */}
             <p>Title: {title}</p>
             <p>Author: {author}</p>
             <p>Price: {price} kr</p>
