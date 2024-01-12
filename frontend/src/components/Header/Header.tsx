@@ -1,7 +1,7 @@
 import "./header.css";
-import cartIcon from '../../assets/cart-shopping-solid.svg';
-import storeIcon from '../../assets/store-solid.svg';
-import infoIcon from '../../assets/circle-info-solid.svg';
+import cartIcon from '../../assets/icons/cart-shopping-solid.svg';
+import storeIcon from '../../assets/icons/store-solid.svg';
+import infoIcon from '../../assets/icons/circle-info-solid.svg';
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import Cart from "../Cart/Cart";
