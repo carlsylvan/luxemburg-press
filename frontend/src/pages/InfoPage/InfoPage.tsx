@@ -1,11 +1,16 @@
 import "./infoPage.css"
+import instaIcon from "../../assets/icons/instagram.svg"
+import euIcon from "../../assets/icons/euro-sign-solid.svg"
 
 export default function InfoPage() {
 
 
     return(<div className="page">
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat, aliquam ut quos ipsum sed at libero adipisci rerum harum ea asperiores quo saepe atque. Atque ex expedita eveniet ut quaerat.</p>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat, aliquam ut quos ipsum sed at libero adipisci rerum harum ea asperiores quo saepe atque. Atque ex expedita eveniet ut quaerat.</p>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat, aliquam ut quos ipsum sed at libero adipisci rerum harum ea asperiores quo saepe atque. Atque ex expedita eveniet ut quaerat.</p>
+
+        <img src={euIcon} height="100px" ></img>
+
+        <a href="https://www.instagram.com/luxemburgpress/" target="_blank" rel="noopener noreferrer">
+        <img width="100px" src={instaIcon} />
+        </a>
     </div>)
 }
