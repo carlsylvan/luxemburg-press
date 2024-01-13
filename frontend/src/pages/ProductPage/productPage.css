@@ -1,4 +1,4 @@
-.product-information {
+/* .product-information {
     width: 50%;
     background-color: #000080; 
     color: #ff00ff; 
@@ -15,6 +15,7 @@
     padding: 0.5rem;
     background-color: #0000ff; 
     border: 1px solid #ff0000; 
+    margin: 0;
 }
 
 
@@ -37,5 +38,5 @@
 
 .product-information button:hover {
     background-color: #ff00ff; 
-}
+} */
 
