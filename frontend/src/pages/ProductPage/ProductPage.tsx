@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./productPage.css";
 import { getProductById } from "../../services/productsService";
 import { IProduct } from "../../interfaces/IProduct";
@@ -55,17 +55,31 @@ export default function ProductPage() {
     
       setCart({ items: newCartItems });
     };
+
+    const renderDescription = () => {
+      return product.description.split('\n').map((line, index) => (
+          <React.Fragment key={index}>
+              {line}
+              <br />
+          </React.Fragment>
+      ));
+  };
     
 
     return (
         <div className="page">
         <div className="product-information">
-            <p>Title: {product.title}</p>
-            <p>Author: {product.author}</p>
-            <p>Price: {product.price} kr</p>
-            <p>{product.description}</p>
-            <img width={400} src={new URL(product.imgUrl, import.meta.url).href}></img>
+          <div className="product-information-img-container">
+          <img width={400} src={new URL(product.imgUrl, import.meta.url).href}></img>
+          </div>
+          <div className="product-information-info-container">
+          <h2>{product.title}</h2>
+            <p>by {product.author}</p>
+            <p>{product.price} kr</p>
+            <p className="product-information-description">{renderDescription()}</p>
             <button onClick={() => addToCart(product)}>Add to cart</button>
+
+          </div>
         </div>            
         </div>
     );
