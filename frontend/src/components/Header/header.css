@@ -2,7 +2,7 @@
     background-color: var(--blue);
     display: flex; 
     align-items: center; 
-    height: 10rem;
+    height: 9rem;
     padding: 0; 
     position: relative;
 }
@@ -35,5 +35,5 @@ h1 {
     font-style: italic;
     font-stretch: extra-condensed;
     margin: 0;
-    margin-left: 1rem;
+    margin-left: 2rem;
 }

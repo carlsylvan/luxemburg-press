@@ -20,7 +20,7 @@ export default function Cart() {
                     <Link to={`/store/${item.product._id}`}>
                     <div id="cart-item-product-name">{item.product.title}</div>
                     </Link>
-                    <div>Antal: {item.quantity}</div>
+                    <div>Quantity: {item.quantity}</div>
                     {/* <div>Pris: {item.product.price} kr</div> */}
                 </div>
             ))}

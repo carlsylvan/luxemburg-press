@@ -1,7 +1,8 @@
 import axios from "axios";
 
-import { INewProduct } from "../interfaces/INewProduct";
+// import { INewProduct } from "../interfaces/INewProduct";
 import { IProduct } from "../interfaces/IProduct";
+import { INewProduct } from "../interfaces/INewProduct";
 // import { IProduct } from "../interfaces/IProduct";
 export const URL = "http://localhost:3000";
 

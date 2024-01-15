@@ -1,32 +1,4 @@
-
-/* 90s */
 .product-card {
-    border: 3px solid #00ff00; /* Neon or bright colors */
-    background-color: #000080; /* Dark backgrounds were common */
-    color: #ff00ff; /* High contrast text color */
-    width: 100%;
-    max-width: 400px;
-    padding: 1em;
-    margin: 1em;
-}
-
-.product-card p {
-    font-family: 'Courier New', Courier, monospace; /* Pixel-like fonts */
-    font-size: 16px; /* Larger, more readable sizes */
-    color: #ffff00; /* Bright colors for text */
-}
-
-.product-card img {
-    width: 100%;
-    height: auto;
-    border: 2px solid #ff0000; /* Add borders to images */
-}
-
-
-
-/* "Serious"
-/* .product-card {
-    border: 1px solid var(--yellow);
     color: black;
     width: 100%;
     max-width: 400px;
@@ -43,11 +15,12 @@
     margin: 0.5em 0;
     font-size: 1rem;
     line-height: 1.4;
+    color: var(--yellow)
 }
 
 .product-card img {
     width: 100%;
-    height: 200px; 
+    height: 300px; 
     object-fit: cover; 
     border-radius: 5px;
-} */
+}
