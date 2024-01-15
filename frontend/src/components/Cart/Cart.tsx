@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { CartContext } from "../../contexts/CartContext";
 import "./cart.css";
 import { Link } from "react-router-dom";
@@ -10,8 +10,27 @@ interface ICartProps {
 export default function Cart({closeCart}: ICartProps) {
     const { cart, setCart } = useContext(CartContext);
 
+    const cartRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (cartRef.current && !cartRef.current.contains(event.target as Node)) {
+                closeCart();
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [closeCart]);
+
+
     if (!cart || cart.items.length === 0) {
-        return <div className="cart">Your cart is empty.</div>;
+        return <div className="cart">
+                    <button className="cart-close-button" onClick={closeCart}>X</button>
+            <div>Your cart is empty.</div>
+            </div>;
     }
 
     const totalCost = cart.items.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
@@ -23,11 +42,10 @@ export default function Cart({closeCart}: ICartProps) {
         }
         setCart(newCart);
     };
-
     
 
     return (
-        <div className="cart">
+        <div className="cart" ref={cartRef}>
             <button className="cart-close-button" onClick={closeCart}>X</button>
             {cart.items.map((item, index) => (
                 <div key={index} className="cart-item">
