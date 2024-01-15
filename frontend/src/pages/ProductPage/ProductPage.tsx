@@ -71,6 +71,7 @@ export default function ProductPage() {
         <div className="product-information">
           <div className="product-information-img-container">
           <img width={400} src={new URL(product.imgUrl, import.meta.url).href}></img>
+          <div className="product-information-img-carousel"></div>
           </div>
           <div className="product-information-info-container">
           <h2>{product.title}</h2>
