@@ -1,6 +1,6 @@
 .product-information {
     background-color: white;
-    border-radius: 8px; /* Blocky with slightly rounded edges */
+    border-radius: 8px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin: 20px auto;
@@ -20,8 +20,8 @@
 }
 
 .product-information p, .product-information button {
-    width: 100%; /* Full width for a blockier look */
-    margin-bottom: 10px; /* Uniform spacing */
+    width: 100%; 
+    margin-bottom: 10px;
 }
 
 .product-information p {
