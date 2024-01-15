@@ -4,7 +4,7 @@ import "./cart.css";
 import { Link } from "react-router-dom";
 
 export default function Cart() {
-    const { cart } = useContext(CartContext);
+    const { cart, setCart } = useContext(CartContext);
 
     if (!cart || cart.items.length === 0) {
         return <div className="cart">Your cart is empty.</div>;
@@ -12,21 +12,32 @@ export default function Cart() {
 
     const totalCost = cart.items.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
 
+    const handleQuantityChange = (index: number, delta: number) => {
+        const newCart = { ...cart };
+        if (newCart.items[index].quantity + delta >= 0) {
+            newCart.items[index].quantity += delta;
+        }
+        setCart(newCart);
+    };
+
     return (
         <div className="cart">
             {cart.items.map((item, index) => (
                 <div key={index} className="cart-item">
-
                     <Link to={`/store/${item.product._id}`}>
-                    <div id="cart-item-product-name">{item.product.title}</div>
+                        <div id="cart-item-product-name">{item.product.title}</div>
                     </Link>
-                    <div>Quantity: {item.quantity}</div>
-                    {/* <div>Pris: {item.product.price} kr</div> */}
+                    <div>
+                        Quantity
+                        <button onClick={() => handleQuantityChange(index, -1)}>-</button>
+                        {item.quantity} 
+                        <button onClick={() => handleQuantityChange(index, 1)}>+</button>
+                    </div>
                 </div>
             ))}
 
             <div id="cart-total-cost">
-                {totalCost} kr
+                Total: {totalCost} kr
             </div>
 
             <Link to="/checkout">
