@@ -12,4 +12,5 @@ export interface IProduct {
   // images: { [key: string]: string };
   description: string;
   imgUrl: string;
+  images: string[];
 }

@@ -4,6 +4,7 @@ import { getProductById } from "../../services/productsService";
 import { IProduct } from "../../interfaces/IProduct";
 import { useParams } from "react-router-dom";
 import { CartContext } from '../../contexts/CartContext';
+import { ImageCarousel } from "../../components/ImageCarousel/ImageCarousel";
 
 export default function ProductPage() {
     const [product, setProduct] = useState<IProduct>({
@@ -17,9 +18,9 @@ export default function ProductPage() {
       category: "string",
       language: "string",
       pageCount: 0,
-      // images: { [key: string]: string };
       description: "string",
       imgUrl: "string",
+      images: [],
     });
 
     const { id } = useParams();
@@ -71,7 +72,7 @@ export default function ProductPage() {
         <div className="product-information">
           <div className="product-information-img-container">
           <img width={400} src={new URL(product.imgUrl, import.meta.url).href}></img>
-          <div className="product-information-img-carousel"></div>
+          <ImageCarousel images={product.images}></ImageCarousel>
           </div>
           <div className="product-information-info-container">
           <h2>{product.title}</h2>

@@ -1,0 +1,12 @@
+.image-carousel {
+  position: relative;
+}
+.image-carousel img {
+  width: 100%; 
+  height: auto;
+}
+.image-carousel button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
