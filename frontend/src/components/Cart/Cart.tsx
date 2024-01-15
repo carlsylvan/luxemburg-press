@@ -37,9 +37,12 @@ export default function Cart({closeCart}: ICartProps) {
 
     const handleQuantityChange = (index: number, delta: number) => {
         const newCart = { ...cart };
-        if (newCart.items[index].quantity + delta >= 0) {
-            newCart.items[index].quantity += delta;
+        newCart.items[index].quantity += delta;
+    
+        if (newCart.items[index].quantity <= 0) {
+            newCart.items.splice(index, 1);
         }
+    
         setCart(newCart);
     };
     
