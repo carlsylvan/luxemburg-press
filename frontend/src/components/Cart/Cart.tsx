@@ -3,7 +3,11 @@ import { CartContext } from "../../contexts/CartContext";
 import "./cart.css";
 import { Link } from "react-router-dom";
 
-export default function Cart() {
+interface ICartProps {
+    closeCart: () => void;
+}
+
+export default function Cart({closeCart}: ICartProps) {
     const { cart, setCart } = useContext(CartContext);
 
     if (!cart || cart.items.length === 0) {
@@ -20,8 +24,11 @@ export default function Cart() {
         setCart(newCart);
     };
 
+    
+
     return (
         <div className="cart">
+            <button className="cart-close-button" onClick={closeCart}>X</button>
             {cart.items.map((item, index) => (
                 <div key={index} className="cart-item">
                     <Link to={`/store/${item.product._id}`}>

@@ -42,7 +42,7 @@ export default function Header() {
                 </ul>
             </div>
 
-            {cartOpen && <Cart></Cart>}
+            {cartOpen && <Cart closeCart={() => setCartOpen(false)}></Cart>}
         </div>
     );
 }
