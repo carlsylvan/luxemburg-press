@@ -29,9 +29,9 @@ export default function Cart() {
                     </Link>
                     <div>
                         Quantity
-                        <button onClick={() => handleQuantityChange(index, -1)}>-</button>
+                        <button className="cart-item-quantity-button" onClick={() => handleQuantityChange(index, -1)}>-</button>
                         {item.quantity} 
-                        <button onClick={() => handleQuantityChange(index, 1)}>+</button>
+                        <button className="cart-item-quantity-button" onClick={() => handleQuantityChange(index, 1)}>+</button>
                     </div>
                 </div>
             ))}
