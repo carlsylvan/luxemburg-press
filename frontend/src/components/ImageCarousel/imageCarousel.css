@@ -21,17 +21,10 @@
   padding: 5px 10px; 
   color: var(--blue); 
   transition: background-color 0.3s ease;
+  width: 100px;
 }
 
 .image-carousel button:hover {
   background-color: var(--blue);
   color: white;
-}
-
-.image-carousel button:first-of-type {
-  left: 10px; 
-}
-
-.image-carousel button:last-of-type {
-  right: 10px; 
 }

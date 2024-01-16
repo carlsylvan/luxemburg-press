@@ -26,15 +26,15 @@ export const ImageCarousel = ({ images }: ImageCarouselProps) => {
 
   return (
     <div className="image-carousel">
-      {currentIndex == 0 && (
-        <button onClick={goToPrevious}>Previous</button>
+      {currentIndex > 1 && (
+        <button onClick={goToPrevious}>&lt;</button>
       )}
         <img 
         src={new URL(images[currentIndex], import.meta.url).href} 
         alt={`Slide ${currentIndex}`} 
       />
       {currentIndex < imagesArray.length && (
-        <button onClick={goToNext}>Next</button>
+        <button onClick={goToNext}>&gt;</button>
       )}    
       </div>
   );
