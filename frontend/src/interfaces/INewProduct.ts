@@ -11,4 +11,5 @@ export interface INewProduct {
   pageCount: number;
   description: string;
   imgUrl: string;
+  images: string[];
 }
