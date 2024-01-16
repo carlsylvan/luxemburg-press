@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./imageCarousel.css";
+import "./imageCarousel.css"
 
 interface ImageCarouselProps {
   images: string[];
@@ -8,17 +8,21 @@ interface ImageCarouselProps {
 export const ImageCarousel = ({ images }: ImageCarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(1);
 
+  const imagesArray = Object.values(images);
+
   const goToPrevious = () => {
-    const isFirstImage = currentIndex === 1;
+    const isFirstImage = currentIndex === 0;
     const newIndex = isFirstImage ? images.length - 1 : currentIndex - 1;
     setCurrentIndex(newIndex);
   };
 
   const goToNext = () => {
     const isLastImage = currentIndex === images.length - 1;
-    const newIndex = isLastImage ? 1 : currentIndex + 1;
+    const newIndex = isLastImage ? 0 : currentIndex + 1;
     setCurrentIndex(newIndex);
   };
+
+
 
   return (
     <div className="image-carousel">
@@ -27,7 +31,9 @@ export const ImageCarousel = ({ images }: ImageCarouselProps) => {
         src={new URL(images[currentIndex], import.meta.url).href} 
         alt={`Slide ${currentIndex}`} 
       />
-      <button onClick={goToNext}>Next</button>
-    </div>
+      {currentIndex < imagesArray.length && (
+        <button onClick={goToNext}>Next</button>
+      )}    
+      </div>
   );
 };
