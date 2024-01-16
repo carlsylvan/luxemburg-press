@@ -1,12 +1,37 @@
 .image-carousel {
   position: relative;
+  max-width: 80%; 
+  margin: auto; 
 }
+
 .image-carousel img {
-  width: 100%; 
+  width: 100%;
   height: auto;
+  border-radius: 5px;
 }
+
 .image-carousel button {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px 10px; 
+  color: var(--blue); 
+  transition: background-color 0.3s ease;
+}
+
+.image-carousel button:hover {
+  background-color: var(--blue);
+  color: white;
+}
+
+.image-carousel button:first-of-type {
+  left: 10px; 
+}
+
+.image-carousel button:last-of-type {
+  right: 10px; 
 }

@@ -79,7 +79,7 @@ export default function ProductPage() {
             <p>by {product.author}</p>
             <p>{product.price} kr</p>
             <p className="product-information-description">{renderDescription()}</p>
-            <button onClick={() => addToCart(product)}>Add to cart</button>
+            <button className="product-information-cart-button" onClick={() => addToCart(product)}>Add to cart</button>
 
           </div>
         </div>            

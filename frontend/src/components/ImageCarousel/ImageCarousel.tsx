@@ -1,22 +1,22 @@
 import { useState } from "react";
-import "./imageCarousel.css"
+import "./imageCarousel.css";
 
 interface ImageCarouselProps {
   images: string[];
 }
 
 export const ImageCarousel = ({ images }: ImageCarouselProps) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(1);
 
   const goToPrevious = () => {
-    const isFirstImage = currentIndex === 0;
+    const isFirstImage = currentIndex === 1;
     const newIndex = isFirstImage ? images.length - 1 : currentIndex - 1;
     setCurrentIndex(newIndex);
   };
 
   const goToNext = () => {
     const isLastImage = currentIndex === images.length - 1;
-    const newIndex = isLastImage ? 0 : currentIndex + 1;
+    const newIndex = isLastImage ? 1 : currentIndex + 1;
     setCurrentIndex(newIndex);
   };
 
