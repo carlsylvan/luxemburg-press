@@ -1,13 +1,13 @@
 .product-information {
     background-color: white;
-    border-radius: 8px; /* Blocky with slightly rounded edges */
+    border-radius: 8px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin: 20px auto;
     max-width: 80%;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    /* align-items: center; */
 }
 
 .product-information-img-container {
@@ -19,9 +19,9 @@
     padding: 2rem;
 }
 
-.product-information p, .product-information button {
-    width: 100%; /* Full width for a blockier look */
-    margin-bottom: 10px; /* Uniform spacing */
+.product-information p, .product-information-cart-button {
+    width: 100%; 
+    margin-bottom: 10px;
 }
 
 .product-information p {

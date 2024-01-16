@@ -10,5 +10,6 @@ export interface INewProduct {
   language: string;
   pageCount: number;
   description: string;
-  imgUrl: string;
+  mainImage: string;
+  images: string[];
 }

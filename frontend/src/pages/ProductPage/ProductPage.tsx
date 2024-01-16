@@ -4,6 +4,7 @@ import { getProductById } from "../../services/productsService";
 import { IProduct } from "../../interfaces/IProduct";
 import { useParams } from "react-router-dom";
 import { CartContext } from '../../contexts/CartContext';
+import { ImageCarousel } from "../../components/ImageCarousel/ImageCarousel";
 
 export default function ProductPage() {
     const [product, setProduct] = useState<IProduct>({
@@ -17,9 +18,9 @@ export default function ProductPage() {
       category: "string",
       language: "string",
       pageCount: 0,
-      // images: { [key: string]: string };
       description: "string",
-      imgUrl: "string",
+      mainImage: "string",
+      images: [],
     });
 
     const { id } = useParams();
@@ -70,15 +71,15 @@ export default function ProductPage() {
         <div className="page">
         <div className="product-information">
           <div className="product-information-img-container">
-          <img width={400} src={new URL(product.imgUrl, import.meta.url).href}></img>
-          <div className="product-information-img-carousel"></div>
+          <img width={400} src={new URL(product.mainImage, import.meta.url).href}></img>
+          <ImageCarousel images={product.images}></ImageCarousel>
           </div>
           <div className="product-information-info-container">
           <h2>{product.title}</h2>
             <p>by {product.author}</p>
             <p>{product.price} kr</p>
             <p className="product-information-description">{renderDescription()}</p>
-            <button onClick={() => addToCart(product)}>Add to cart</button>
+            <button className="product-information-cart-button" onClick={() => addToCart(product)}>Add to cart</button>
 
           </div>
         </div>            
