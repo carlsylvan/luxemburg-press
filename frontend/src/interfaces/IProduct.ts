@@ -9,7 +9,6 @@ export interface IProduct {
   category: string;
   language: string;
   pageCount: number;
-  // images: { [key: string]: string };
   description: string;
   mainImage: string;
   images: string[];
