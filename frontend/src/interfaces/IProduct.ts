@@ -11,6 +11,6 @@ export interface IProduct {
   pageCount: number;
   // images: { [key: string]: string };
   description: string;
-  imgUrl: string;
+  mainImage: string;
   images: string[];
 }

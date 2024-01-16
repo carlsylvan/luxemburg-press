@@ -19,7 +19,7 @@ export default function ProductPage() {
       language: "string",
       pageCount: 0,
       description: "string",
-      imgUrl: "string",
+      mainImage: "string",
       images: [],
     });
 
@@ -71,7 +71,7 @@ export default function ProductPage() {
         <div className="page">
         <div className="product-information">
           <div className="product-information-img-container">
-          <img width={400} src={new URL(product.imgUrl, import.meta.url).href}></img>
+          <img width={400} src={new URL(product.mainImage, import.meta.url).href}></img>
           <ImageCarousel images={product.images}></ImageCarousel>
           </div>
           <div className="product-information-info-container">
