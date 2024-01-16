@@ -26,8 +26,10 @@ export const ImageCarousel = ({ images }: ImageCarouselProps) => {
 
   return (
     <div className="image-carousel">
-      <button onClick={goToPrevious}>Previous</button>
-      <img 
+      {currentIndex == 0 && (
+        <button onClick={goToPrevious}>Previous</button>
+      )}
+        <img 
         src={new URL(images[currentIndex], import.meta.url).href} 
         alt={`Slide ${currentIndex}`} 
       />
