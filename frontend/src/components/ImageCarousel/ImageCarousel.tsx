@@ -2,21 +2,21 @@ import { useState } from "react";
 import "./imageCarousel.css";
 
 interface ImageCarouselProps {
-  images: { [key: string]: string };
+  images: string[];
 }
 
 export const ImageCarousel = ({ images }: ImageCarouselProps) => {
-  const imagesArray = Object.values(images);
-
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const goToPrevious = () => {
-    const newIndex = currentIndex === 0 ? imagesArray.length - 1 : currentIndex - 1;
+    const isFirstImage = currentIndex === 0;
+    const newIndex = isFirstImage ? images.length - 1 : currentIndex - 1;
     setCurrentIndex(newIndex);
   };
 
   const goToNext = () => {
-    const newIndex = currentIndex === imagesArray.length - 1 ? 0 : currentIndex + 1;
+    const isLastImage = currentIndex === images.length - 1;
+    const newIndex = isLastImage ? 0 : currentIndex + 1;
     setCurrentIndex(newIndex);
   };
 
@@ -26,10 +26,10 @@ export const ImageCarousel = ({ images }: ImageCarouselProps) => {
         <button onClick={goToPrevious}>&lt;</button>
       )}
       <img 
-        src={new URL(imagesArray[currentIndex], import.meta.url).href} 
+        src={new URL(images[currentIndex], import.meta.url).href} 
         alt={`Slide ${currentIndex + 1}`} 
       />
-      {currentIndex < imagesArray.length - 1 && (
+      {currentIndex < images.length - 1 && (
         <button onClick={goToNext}>&gt;</button>
       )}
     </div>

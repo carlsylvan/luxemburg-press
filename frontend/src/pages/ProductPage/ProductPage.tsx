@@ -66,13 +66,14 @@ export default function ProductPage() {
       ));
   };
     
+  const imageArray = Object.values(product.images);
 
     return (
         <div className="page">
         <div className="product-information">
           <div className="product-information-img-container">
           <img width={400} src={new URL(product.mainImage, import.meta.url).href}></img>
-          <ImageCarousel images={product.images}></ImageCarousel>
+          <ImageCarousel images={imageArray}></ImageCarousel>
           </div>
           <div className="product-information-info-container">
           <h2>{product.title}</h2>
