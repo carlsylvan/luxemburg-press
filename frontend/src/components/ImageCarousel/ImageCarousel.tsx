@@ -22,16 +22,22 @@ export const ImageCarousel = ({ images }: ImageCarouselProps) => {
 
   return (
     <div className="image-carousel">
-      {currentIndex > 0 && (
-        <button onClick={goToPrevious}>&lt;</button>
-      )}
+      <button 
+        className={`image-carousel-button`}
+        onClick={goToPrevious}
+      >
+        &lt;
+      </button>
       <img 
         src={new URL(images[currentIndex], import.meta.url).href} 
         alt={`Slide ${currentIndex + 1}`} 
       />
-      {currentIndex < images.length - 1 && (
-        <button onClick={goToNext}>&gt;</button>
-      )}
+      <button 
+        className={`image-carousel-button`}
+        onClick={goToNext}
+      >
+        &gt;
+      </button>
     </div>
   );
 };

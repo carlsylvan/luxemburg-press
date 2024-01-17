@@ -2,6 +2,8 @@
   position: relative;
   max-width: 80%; 
   margin: auto; 
+  display: flex;
+  align-items: center;
 }
 
 .image-carousel img {
@@ -14,17 +16,33 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(255, 255, 255, 0.5);
-  border: none;
-  border-radius: 5px;
+  background-color: var(--yellow); 
+  color: #333; 
+  border: 2px solid #333; 
+  border-radius: 50%;
   cursor: pointer;
-  padding: 5px 10px; 
-  color: var(--blue); 
-  transition: background-color 0.3s ease;
-  width: 100px;
+  padding: 10px;
+  font-size: 24px;
+  font-family: 'Courier New', Courier, monospace; 
+  box-shadow: 3px 3px 0 #333; 
+  z-index: 100;
+  transition: all 0.3s ease;
 }
 
 .image-carousel button:hover {
-  background-color: var(--blue);
-  color: white;
+  background-color: #333;
+  color: #f4f4f4;
+  box-shadow: 6px 6px 0 #f4f4f4;
+}
+
+.image-carousel button.hidden {
+  visibility: hidden;
+}
+
+.image-carousel button:first-of-type {
+  left: -50px; 
+}
+
+.image-carousel button:last-of-type {
+  right: -50px; 
 }
