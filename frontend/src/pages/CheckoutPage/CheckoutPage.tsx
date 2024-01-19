@@ -2,50 +2,51 @@ import {
     // ChangeEvent, 
     // FormEvent, 
     useContext,
-     useEffect,
-     useState } from "react";
+    //  useEffect,
+    //  useState 
+    } from "react";
 import "./checkoutPage.css";
 import { CartContext } from "../../contexts/CartContext";
-import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
+import { PayPalButtons } from "@paypal/react-paypal-js";
 
 export default function CheckoutPage() {
     const { cart } = useContext(CartContext);
-    const [clientToken, setClientToken] = useState(null);
+    // const [clientToken, setClientToken] = useState(null);
 
 
-    const initialOptions = {
+    // const initialOptions = {
   
-      "clientId": "test",
+    //   "clientId": "test",
   
-      "enable-funding": "",
+    //   "enable-funding": "",
   
-      "disable-funding": "paylater,venmo",
+    //   "disable-funding": "paylater,venmo",
   
-      "data-sdk-integration-source": "integrationbuilder_ac",
+    //   "data-sdk-integration-source": "integrationbuilder_ac",
   
-      "data-client-token": clientToken,
+    //   "data-client-token": clientToken,
   
-      components: "hosted-fields,buttons",
+    //   components: "hosted-fields,buttons",
   
-    };
+    // };
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        (async () => {
+    //     (async () => {
     
-          const response = await fetch("/api/token", {
+    //       const response = await fetch("/api/token", {
     
-            method: "POST",
+    //         method: "POST",
     
-          });
+    //       });
     
-          const { client_token } = await response.json();
+    //       const { client_token } = await response.json();
     
-          setClientToken(client_token);
+    //       setClientToken(client_token);
     
-        })();
+    //     })();
     
-      }, []);
+    //   }, []);
 
     // const [formData, setFormData] = useState({
     //     name: '',
@@ -83,9 +84,7 @@ export default function CheckoutPage() {
                 ))}
                 <div id="checkout-total-cost">{totalCost} kr</div>
             <div className="checkout-form-container">
-            <PayPalScriptProvider options={initialOptions}>
                     <PayPalButtons></PayPalButtons>
-                </PayPalScriptProvider>
 
                 {/* <form onSubmit={handleSubmit}>
                     <input
