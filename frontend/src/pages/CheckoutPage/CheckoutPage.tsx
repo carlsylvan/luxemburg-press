@@ -1,31 +1,70 @@
-import { ChangeEvent, FormEvent, useContext, useState } from "react";
+import { 
+    // ChangeEvent, 
+    // FormEvent, 
+    useContext,
+     useEffect,
+     useState } from "react";
 import "./checkoutPage.css";
 import { CartContext } from "../../contexts/CartContext";
+import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 export default function CheckoutPage() {
     const { cart } = useContext(CartContext);
+    const [clientToken, setClientToken] = useState(null);
 
-    // State to store form data
-    const [formData, setFormData] = useState({
-        name: '',
-        address: '',
-        phoneNumber: '',
-        email: ''
-        // Add more fields as necessary
-    });
 
-    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
+    const initialOptions = {
+  
+      "clientId": "test",
+  
+      "enable-funding": "",
+  
+      "disable-funding": "paylater,venmo",
+  
+      "data-sdk-integration-source": "integrationbuilder_ac",
+  
+      "data-client-token": clientToken,
+  
+      components: "hosted-fields,buttons",
+  
     };
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        // Handle form submission, such as sending data to a server
-        console.log(formData);
-    };
+    useEffect(() => {
+
+        (async () => {
+    
+          const response = await fetch("/api/token", {
+    
+            method: "POST",
+    
+          });
+    
+          const { client_token } = await response.json();
+    
+          setClientToken(client_token);
+    
+        })();
+    
+      }, []);
+
+    // const [formData, setFormData] = useState({
+    //     name: '',
+    //     address: '',
+    //     phoneNumber: '',
+    //     email: ''
+    // });
+
+    // const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    //     setFormData({
+    //         ...formData,
+    //         [e.target.name]: e.target.value
+    //     });
+    // };
+
+    // const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    //     e.preventDefault();
+    //     console.log(formData);
+    // };
 
     if (!cart || cart.items.length === 0) {
         return <div className="checkout-no-items">Add products</div>;
@@ -44,7 +83,11 @@ export default function CheckoutPage() {
                 ))}
                 <div id="checkout-total-cost">{totalCost} kr</div>
             <div className="checkout-form-container">
-                <form onSubmit={handleSubmit}>
+            <PayPalScriptProvider options={initialOptions}>
+                    <PayPalButtons></PayPalButtons>
+                </PayPalScriptProvider>
+
+                {/* <form onSubmit={handleSubmit}>
                     <input
                         type="text"
                         name="name"
@@ -73,9 +116,8 @@ export default function CheckoutPage() {
                         onChange={handleInputChange}
                         placeholder="E-mail"
                     />
-                    {/* Add more input fields as needed */}
                     <button type="submit">Order</button>
-                </form>
+                </form> */}
             </div>
             </div>
             </div>
