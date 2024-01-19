@@ -6,11 +6,13 @@ import { CartContext } from '../../contexts/CartContext';
 import { ImageCarousel } from "../../components/ImageCarousel/ImageCarousel";
 import "./productPage.css";
 import { IProduct } from "../../interfaces/IProduct";
-import Loading from "../../components/Loading/Loading";
+// import Loading from "../../components/Loading/Loading";
 
 export default function ProductPage() {
     const { id } = useParams();
-    const { data: product, isLoading, error } = useQuery(['product', id], () => getProductById(id));
+    const { data: product, 
+      // isLoading
+       error } = useQuery(['product', id], () => getProductById(id));
 
     const cart = useContext(CartContext);
     const setCart = cart.setCart;
@@ -46,9 +48,9 @@ export default function ProductPage() {
         ));
     };
 
-    if (isLoading) {
-        return <Loading></Loading>;
-    }
+    // if (isLoading) {
+    //     return <Loading></Loading>;
+    // }
 
     if (error) {
         return <div className="error">Error fetching product</div>;

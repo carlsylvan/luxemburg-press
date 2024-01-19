@@ -5,6 +5,8 @@ import euIcon from "../../assets/icons/euro-sign-solid.svg"
 export default function Loading() {
 
     return(
-        <img src={euIcon} alt="Euro Sign" className="social-icon" />
+        <div className="euro-loading-icon-wrapper">
+        <img src={euIcon} alt="Euro Sign" className="euro-loading-icon" />
+        </div>
         )
 }

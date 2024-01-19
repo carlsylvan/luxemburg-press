@@ -11,7 +11,15 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 function App() {
   const [cart, setCart] = useState<ICart | null>(null);
   const [clientToken, setClientToken] = useState(null);
-  const queryClient = new QueryClient()
+  const queryClient = new QueryClient(
+    {
+      defaultOptions: {
+        queries: {
+          suspense: true,
+        },
+      },
+    }
+  )
 
   useEffect(() => {
 
