@@ -1,14 +1,12 @@
 import { useState } from "react";
-import "./imageCarousel.css"
+import "./imageCarousel.css";
 
 interface ImageCarouselProps {
   images: string[];
 }
 
 export const ImageCarousel = ({ images }: ImageCarouselProps) => {
-  const [currentIndex, setCurrentIndex] = useState(1);
-
-  const imagesArray = Object.values(images);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const goToPrevious = () => {
     const isFirstImage = currentIndex === 0;
@@ -22,20 +20,24 @@ export const ImageCarousel = ({ images }: ImageCarouselProps) => {
     setCurrentIndex(newIndex);
   };
 
-
-
   return (
     <div className="image-carousel">
-      {currentIndex > 1 && (
-        <button onClick={goToPrevious}>&lt;</button>
-      )}
-        <img 
+      <button 
+        className={`image-carousel-button`}
+        onClick={goToPrevious}
+      >
+        &lt;
+      </button>
+      <img 
         src={new URL(images[currentIndex], import.meta.url).href} 
-        alt={`Slide ${currentIndex}`} 
+        alt={`Slide ${currentIndex + 1}`} 
       />
-      {currentIndex < imagesArray.length && (
-        <button onClick={goToNext}>&gt;</button>
-      )}    
-      </div>
+      <button 
+        className={`image-carousel-button`}
+        onClick={goToNext}
+      >
+        &gt;
+      </button>
+    </div>
   );
 };

@@ -1,0 +1,25 @@
+.info-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    gap: 20px;
+}
+
+.social-link {
+    color: var(--yellow);
+    display: inline-block; 
+    margin: 10px;
+    transition: transform 0.3s ease; 
+}
+
+.social-link:hover {
+    transform: scale(1.1); 
+}
+
+.social-icon {
+    height: 100px; 
+    width: auto; 
+    color: var(--yellow);
+
+}

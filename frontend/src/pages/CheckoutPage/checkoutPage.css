@@ -1,6 +1,6 @@
 .checkout {
-    margin-left: 10rem;
-    margin-right: 10rem;
+    margin-left: 20rem;
+    margin-right: 20rem;
 }
 
 .checkout-form-container {
@@ -46,15 +46,26 @@
 .checkout-item {
     border-bottom: 1px solid #eee;
     padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
 }
 
 #checkout-item-product-name {
     font-weight: bold;
 }
 
+.checkout-item .product-quantity {
+    font-size: 1.5rem; 
+    color: var(--yellow);
+    font-weight: bold; 
+    margin-right: 1em; 
+}
+
 #checkout-total-cost {
+    color: var(--yellow);
+    font-size: 5rem;
     margin-top: 20px;
-    font-size: 18px;
     font-weight: bold;
     text-align: right;
 }

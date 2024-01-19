@@ -1,16 +1,20 @@
 import "./infoPage.css"
 import instaIcon from "../../assets/icons/instagram.svg"
 import euIcon from "../../assets/icons/euro-sign-solid.svg"
+import { Link } from "react-router-dom"
 
 export default function InfoPage() {
 
 
-    return(<div className="page">
+    return(<div className="info-page">
 
-        <img src={euIcon} height="100px" ></img>
+    <Link to={"/store"}>
+    <img src={euIcon} alt="Euro Sign" className="social-icon" />
+    </Link>
 
-        <a href="https://www.instagram.com/luxemburgpress/" target="_blank" rel="noopener noreferrer">
-        <img width="100px" src={instaIcon} />
-        </a>
+    <Link to="https://www.instagram.com/luxemburgpress/" target="_blank" rel="noopener noreferrer" className="social-link">
+        <img src={instaIcon} alt="Instagram" className="social-icon" />
+    </Link>
+
     </div>)
 }
