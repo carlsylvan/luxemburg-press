@@ -1,7 +1,13 @@
-import { IProduct } from "../../interfaces/IProduct";
 import "./productCard.css";
 
-export default function ProductCard({ title, author, price, mainImage }: IProduct) {
+interface IProductCardProps {
+    title: string;
+    author: string;
+    price: number;
+    mainImage: string;
+}
+
+export default function ProductCard({ title, author, price, mainImage }: IProductCardProps) {
     return (
         <div className="product-card">
             <p>{title}</p>
