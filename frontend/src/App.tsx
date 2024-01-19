@@ -5,11 +5,21 @@ import { CartContext } from './contexts/CartContext';
 import { useEffect, useState } from 'react';
 import { ICart } from './interfaces/ICart';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 
 function App() {
   const [cart, setCart] = useState<ICart | null>(null);
   const [clientToken, setClientToken] = useState(null);
+  const queryClient = new QueryClient(
+    {
+      defaultOptions: {
+        queries: {
+          suspense: true,
+        },
+      },
+    }
+  )
 
   useEffect(() => {
 
@@ -29,8 +39,6 @@ function App() {
 
   }, []);
 
-
-
   const initialOptions = {
     "clientId": "test",
     "enable-funding": "",
@@ -43,11 +51,13 @@ function App() {
 
   return (
     <>
+    <QueryClientProvider client={queryClient}>
     <PayPalScriptProvider options={initialOptions}>
     <CartContext.Provider value={ {cart, setCart} }>
       <RouterProvider router={router}></RouterProvider>
       </CartContext.Provider>
       </PayPalScriptProvider>
+      </QueryClientProvider>
       </>
   )
 }

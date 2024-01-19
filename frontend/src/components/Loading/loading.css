@@ -1,0 +1,13 @@
+
+.euro-loading-icon-wrapper {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.euro-loading-icon {
+    width: 500px;
+    height: 500px;
+}
