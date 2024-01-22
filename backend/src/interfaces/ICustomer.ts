@@ -1,0 +1,3 @@
+interface ICustomer {
+    name: string;
+}
