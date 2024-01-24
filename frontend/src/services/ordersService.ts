@@ -51,9 +51,13 @@ export const editOrderById = async (id: string, updatedOrder: IOrder) => {
     const { _id, ...orderDataWithoutId } = updatedOrder;
     console.log(_id);
 
-    const response = await axios.put(URL + "/orders/" + id, orderDataWithoutId, {
-      headers: { "Content-Type": "application/json" },
-    });
+    const response = await axios.put(
+      URL + "/orders/" + id,
+      orderDataWithoutId,
+      {
+        headers: { "Content-Type": "application/json" },
+      }
+    );
     return response.data;
   } catch (error) {
     console.error("Error updating order by ID:", error);
