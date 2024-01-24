@@ -39,12 +39,34 @@ export default function AdminPage() {
 
     const renderOrders = () => {
         return orders.map((order) => (
-            <div key={order._id }>
-                <p>Order ID: {order._id}</p>
+            <div key={order._id} className="order-card">
+                <h3>Order ID: {order._id}</h3>
+                <h4>Customer Details:</h4>
+                <p>Name: {order.customerDetails.name}</p>
+                <p>Email: {order.customerDetails.email}</p>
+                <p>Address: {`${order.customerDetails.address.street}, ${order.customerDetails.address.city}, ${order.customerDetails.address.postalCode}, ${order.customerDetails.address.country}`}</p>
+                
+                <h4>Items:</h4>
+                <ul>
+                    {order.items.map((item, index) => (
+                        <li key={index}>
+                            Product ID: {item.productId} - Quantity: {item.quantity} - Price: ${item.price.toFixed(2)}
+                        </li>
+                    ))}
+                </ul>
+    
+                <h4>Payment Details:</h4>
+                <p>Method: {order.paymentDetails.method}</p>
+                {order.paymentDetails.transactionId && <p>Transaction ID: {order.paymentDetails.transactionId}</p>}
+                <p>Status: {order.paymentDetails.status}</p>
+    
+                <p>Order Status: {order.status}</p>
+                <p>Total Amount: ${order.totalAmount.toFixed(2)}</p>
+                <p>Order Date: {new Date(order.orderDate).toLocaleDateString()}</p>
             </div>
         ));
     };
-
+    
     useEffect(() => {
         const fetchProducts = async () => {
             const fetchedProducts = await getProducts();

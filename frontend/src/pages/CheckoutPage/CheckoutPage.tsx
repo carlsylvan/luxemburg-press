@@ -6,9 +6,23 @@ import { PayPalButtons } from "@paypal/react-paypal-js";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import { Link } from "react-router-dom";
 import { createOrder } from "../../services/ordersService";
+import { INewOrder } from "../../interfaces/INewOrder";
+import { ICustomerDetails } from "../../interfaces/IOrder";
 
 export default function CheckoutPage() {
     const { cart } = useContext(CartContext);
+
+
+    const [customer, setCustomer] = useState<ICustomerDetails>({
+      name: '',
+      email: '',
+      address: {
+        street: '',
+        city: '',
+        postalCode: '',
+        country: ''
+      }
+    });
 
     const [message, setMessage] = useState<string>("");
     type MessageProps = {
@@ -25,6 +39,9 @@ export default function CheckoutPage() {
     }
   
     
+    const createNewOrder = async (orderData: INewOrder) => {
+      createOrder(orderData);
+    };
 
 
     const totalCost = cart.items.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
@@ -47,6 +64,69 @@ export default function CheckoutPage() {
                 ))}
                 <div id="checkout-total-cost">{totalCost} kr</div>
             <div className="checkout-form-container">
+            <form>
+  <div className="form-group">
+    <label>Name:</label>
+    <input 
+      type="text" 
+      value={customer.name} 
+      onChange={e => setCustomer({ ...customer, name: e.target.value })}
+      placeholder="Name"
+    />
+  </div>
+
+  <div className="form-group">
+    <label>Email:</label>
+    <input 
+      type="email" 
+      value={customer.email} 
+      onChange={e => setCustomer({ ...customer, email: e.target.value })}
+      placeholder="Email"
+    />
+  </div>
+
+  <div className="form-group">
+    <label>Street:</label>
+    <input 
+      type="text" 
+      value={customer.address.street} 
+      onChange={e => setCustomer({ ...customer, address: { ...customer.address, street: e.target.value } })}
+      placeholder="Street"
+    />
+  </div>
+
+  <div className="form-group">
+    <label>City:</label>
+    <input 
+      type="text" 
+      value={customer.address.city} 
+      onChange={e => setCustomer({ ...customer, address: { ...customer.address, city: e.target.value } })}
+      placeholder="City"
+    />
+  </div>
+
+  <div className="form-group">
+    <label>Postal Code:</label>
+    <input 
+      type="text" 
+      value={customer.address.postalCode} 
+      onChange={e => setCustomer({ ...customer, address: { ...customer.address, postalCode: e.target.value } })}
+      placeholder="Postal Code"
+    />
+  </div>
+
+  <div className="form-group">
+    <label>Country:</label>
+    <input 
+      type="text" 
+      value={customer.address.country} 
+      onChange={e => setCustomer({ ...customer, address: { ...customer.address, country: e.target.value } })}
+      placeholder="Country"
+    />
+  </div>
+
+</form>
+
             <PayPalButtons
 
 style={{
@@ -126,103 +206,59 @@ createOrder={async () => {
 
 }}
 
-onApprove={async (data, actions) => {
-
+onApprove={async (data) => {
   try {
+    const captureResponse = await fetch(`http://localhost:8888/api/orders/${data.orderID}/capture`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+    });
 
-    const response = await fetch(
+    const captureResult = await captureResponse.json();
 
-      `http://localhost:8888/api/orders/${data.orderID}/capture`,
-
-      {
-
-        method: "POST",
-
-        headers: {
-
-          "Content-Type": "application/json",
-
-        },
-
-      },
-
-    );
-
-
-    const orderData = await response.json();
-
-    // Three cases to handle:
-
-    //   (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
-
-    //   (2) Other non-recoverable errors -> Show a failure message
-
-    //   (3) Successful transaction -> Show confirmation or thank you message
-
-
-    const errorDetail = orderData?.details?.[0];
-
-
-    if (errorDetail?.issue === "INSTRUMENT_DECLINED") {
-
-      // (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
-
-      // recoverable state, per https://developer.paypal.com/docs/checkout/standard/customize/handle-funding-failures/
-
-      return actions.restart();
-
-    } else if (errorDetail) {
-
-      // (2) Other non-recoverable errors -> Show a failure message
-
-      throw new Error(
-
-        `${errorDetail.description} (${orderData.debug_id})`,
-
-      );
-
-    } else {
-
-      // (3) Successful transaction -> Show confirmation or thank you message
-
-      // Or go to another URL:  actions.redirect('thank_you.html');
-
-      const transaction =
-
-        orderData.purchase_units[0].payments.captures[0];
-
-      setMessage(
-
-        `Transaction ${transaction.status}: ${transaction.id}. See console for all available details`,
-
-      );
-
-      console.log(
-
-        "Capture result",
-
-        orderData,
-
-        JSON.stringify(orderData, null, 2),
-
-      );
-
-      createOrder(orderData);
-
+    if (captureResult.error) {
+      // Handle errors
+      throw new Error(`Error capturing payment: ${captureResult.error}`);
     }
 
+    // Extract necessary details from PayPal response for INewOrder
+    const paymentDetails = {
+      method: "PayPal",
+      transactionId: captureResult.id,
+      status: captureResult.status,
+    };
+
+    // Construct INewOrder object
+    const newOrderData = {
+      customerDetails: {
+        name: customer.name,
+        email: customer.email,
+        address: {
+          street: customer.address.street,
+          city: customer.address.city,
+          postalCode: customer.address.postalCode,
+          country: customer.address.country,
+        }
+    
+      },
+      items: cart.items.map(item => ({
+        productId: item.product._id,
+        quantity: item.quantity,
+        price: item.product.price,
+      })),
+      paymentDetails,
+      status: "completed", // Update the status as per your application logic
+      totalAmount: totalCost,
+      orderDate: new Date(),
+    };
+
+    // Call your service function to create the new order
+    await createNewOrder(newOrderData);
+
+    setMessage(`Transaction ${paymentDetails.status}: ${paymentDetails.transactionId}.`);
   } catch (error) {
-
-    setMessage(
-
-      `Sorry, your transaction could not be processed...${error}`,
-
-    );
-
+    setMessage(`Sorry, your transaction could not be processed...${error}`);
   }
-
 }}
-
 /> </div>
 <Message content={message} />
             </div>
