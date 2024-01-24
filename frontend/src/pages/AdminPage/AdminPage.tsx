@@ -3,6 +3,8 @@ import "./adminPage.css";
 import { IProduct } from "../../interfaces/IProduct";
 import { createProduct, deleteProductById, editProductById, getProducts } from "../../services/productsService";
 import { INewProduct } from "../../interfaces/INewProduct";
+import { getOrders } from "../../services/ordersService";
+import { IOrder } from "../../interfaces/IOrder";
 
 export default function AdminPage() {
     const initialProductState = {
@@ -17,12 +19,31 @@ export default function AdminPage() {
         language: '',
         pageCount: 0,
         description: '',
-        imgUrl: ''
+        images: [],
+        mainImage: ""
     };
 
     const [newProduct, setNewProduct] = useState<INewProduct>(initialProductState);
     const [products, setProducts] = useState<IProduct[]>([]);
     const [editProduct, setEditProduct] = useState<IProduct | null>(null);
+
+    const [orders, setOrders] = useState<IOrder[]>([]);
+
+    useEffect(() => {
+        const fetchOrders = async () => {
+            const fetchedOrders = await getOrders();
+            setOrders(fetchedOrders);
+        };
+        fetchOrders(); 
+    }, []);
+
+    const renderOrders = () => {
+        return orders.map((order) => (
+            <div key={order._id }>
+                <p>Order ID: {order._id}</p>
+            </div>
+        ));
+    };
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -102,12 +123,16 @@ export default function AdminPage() {
         <textarea id="description" name="description" className="admin-textarea" placeholder="Description" value={product.description} onChange={handleInputChange}></textarea>
 
         <label htmlFor="imgUrl">Image URL</label>
-        <input type="text" id="imgUrl" name="imgUrl" className="admin-input" placeholder="Image URL" value={product.imgUrl} onChange={handleInputChange} />
+        <input type="text" id="imgUrl" name="imgUrl" className="admin-input" placeholder="Image URL" value={product.mainImage} onChange={handleInputChange} />
     </>    );
 
     return (
         <div className="page">
         <div className="admin-container">
+        <div className="orders-container">
+                <h2>Orders</h2>
+                {renderOrders()}
+            </div>
             <form className="admin-form" onSubmit={handleNewProductSubmit}>
                 {renderProductForm(newProduct, handleInputChange)}
                 <button className="admin-button" type="submit">Create Product</button>

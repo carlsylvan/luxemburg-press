@@ -1,6 +1,5 @@
 import axios from "axios";
 import { IOrder } from "../interfaces/IOrder"; // Assuming you have an IOrder interface
-import { INewOrder } from "../interfaces/INewOrder"; // Assuming you have an INewOrder interface
 
 export const URL = "http://localhost:3000"; // Consider moving this to an environment variable
 
@@ -24,7 +23,7 @@ export const getOrderById = async (id: string | undefined) => {
   }
 };
 
-export const createOrder = async (newOrder: INewOrder) => {
+export const createOrder = async (newOrder: unknown) => {
   try {
     const response = await axios.post(URL + "/orders", newOrder, {
       headers: { "Content-Type": "application/json" },

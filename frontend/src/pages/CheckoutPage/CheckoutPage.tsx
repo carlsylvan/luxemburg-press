@@ -5,6 +5,7 @@ import { CartContext } from "../../contexts/CartContext";
 import { PayPalButtons } from "@paypal/react-paypal-js";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import { Link } from "react-router-dom";
+import { createOrder } from "../../services/ordersService";
 
 export default function CheckoutPage() {
     const { cart } = useContext(CartContext);
@@ -205,6 +206,8 @@ onApprove={async (data, actions) => {
         JSON.stringify(orderData, null, 2),
 
       );
+
+      createOrder(orderData);
 
     }
 
