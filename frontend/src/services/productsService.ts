@@ -52,9 +52,13 @@ export const editProductById = async (id: string, updatedProduct: IProduct) => {
     const { _id, ...productDataWithoutId } = updatedProduct;
     console.log(_id);
 
-    const response = await axios.put(URL + "/products/" + id, productDataWithoutId, {
-      headers: { "Content-Type": "application/json" },
-    });
+    const response = await axios.put(
+      URL + "/products/" + id,
+      productDataWithoutId,
+      {
+        headers: { "Content-Type": "application/json" },
+      }
+    );
     return response.data;
   } catch (error) {
     console.error("Error updating product by ID:", error);
