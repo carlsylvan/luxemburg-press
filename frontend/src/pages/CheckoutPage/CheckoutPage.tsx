@@ -13,44 +13,45 @@ export default function CheckoutPage() {
         return <div className="checkout-no-items">Add products</div>;
     }
 
+    interface PayPalApprovalData {
+      orderID: string;
+      // include other properties that PayPal returns
+  }
 
-        function createOrder() {
-        return fetch("/my-server/create-paypal-order", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            // use the "body" param to optionally pass additional order information
-            // like product ids and quantities
-            body: JSON.stringify({
-                cart: [
-                    {
-                        id: "YOUR_PRODUCT_ID",
-                        quantity: "YOUR_PRODUCT_QUANTITY",
-                    },
-                ],
-            }),
-        })
-            .then((response) => response.json())
-            .then((order) => order.id);
-    }
-    function onApprove(data: ) {
-          return fetch("/my-server/capture-paypal-order", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              orderID: data.orderID
-            })
-          })
-          .then((response) => response.json())
-          .then((orderData) => {
-                const name = orderData.payer.name.given_name;
-                alert(`Transaction completed by ${name}`);
-          });    
+  function createOrder() {
+    // Assuming `cart.items` is an array of your cart items
+    const orderItems = cart?.items.map(item => ({
+        id: item.product._id, // or any unique identifier of your product
+        quantity: item.quantity
+    }));
 
-    }
+    return fetch("/orders/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ cart: orderItems }),
+    })
+    .then(response => response.json())
+    .then(order => order.id); // Assuming your backend responds with the order id
+}
+
+function onApprove(data: PayPalApprovalData) {
+    return fetch("/orders/capture/", { // Adjust this endpoint as per your backend API
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ orderID: data.orderID })
+    })
+    .then(response => response.json())
+    .then(orderData => {
+        // Assuming 'orderData' contains the necessary information after capturing the order
+        const name = orderData.payer.name.given_name;
+        alert(`Transaction completed by ${name}`);
+        // You might want to handle additional post-transaction logic here
+    });
+}
 
     const totalCost = cart.items.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
 

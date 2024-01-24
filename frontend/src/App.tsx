@@ -40,8 +40,9 @@ function App() {
   }, []);
 
   const initialOptions = {
-    "clientId": "test",
+    "clientId": "AUR88W8mVuWgY9BlGRqYjk0XMaMEdV3LkAx_OsTfPCiNeOndV-JJQMy_DBXjJ3jlrs7KNw2sbHG8n7NA",
     "enable-funding": "",
+    "currency": "EUR",
     "disable-funding": "paylater,venmo",
     "data-sdk-integration-source": "integrationbuilder_ac",
     "data-client-token": clientToken,
