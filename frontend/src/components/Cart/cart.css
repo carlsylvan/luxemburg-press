@@ -1,36 +1,53 @@
 .cart {
-    position: absolute;
-    top: 8rem;
-    right: 1rem; 
-    width: 200px; 
-    background-color: var(--yellow);
-    padding: 1rem;
+  position: absolute;
+  top: 8rem;
+  right: 1rem;
+  width: 200px;
+  background-color: var(--yellow);
+  padding: 1rem;
 }
 
 .cart-item {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 #cart-item-product-name {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 #cart-total-cost {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .cart-checkout-button {
-    width: 100%;
-    height: 2rem;
+  width: 100%;
+  height: 2rem;
 }
 
 .cart-close-button {
-    position: absolute;
-    top: 0;
-    right: 0;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    font-size: 1rem;
-    padding: 0.5rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+
+.cart-item-quantity-button {
+  background-color: transparent;
+  border: none;
+  color: var(--dark-gray);
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 5px 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 5px;
+}
+
+.cart-item-quantity-button:hover {
+  background-color: var(--light-gray);
 }
