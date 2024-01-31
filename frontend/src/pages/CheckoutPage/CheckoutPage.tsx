@@ -6,21 +6,21 @@ import ProductCard from "../../components/ProductCard/ProductCard";
 import { Link } from "react-router-dom";
 import { createOrder } from "../../services/ordersService";
 import { INewOrder } from "../../interfaces/INewOrder";
-import { ICustomerDetails } from "../../interfaces/IOrder";
+// import { ICustomerDetails } from "../../interfaces/IOrder";
 
 export default function CheckoutPage() {
   const { cart } = useContext(CartContext);
 
-  const [customer, setCustomer] = useState<ICustomerDetails>({
-    name: "",
-    email: "",
-    address: {
-      street: "",
-      city: "",
-      postalCode: "",
-      country: "",
-    },
-  });
+  // const [customer, setCustomer] = useState<ICustomerDetails>({
+  //   name: "",
+  //   email: "",
+  //   address: {
+  //     street: "",
+  //     city: "",
+  //     postalCode: "",
+  //     country: "",
+  //   },
+  // });
 
   const [message, setMessage] = useState<string>("");
   type MessageProps = {
@@ -33,7 +33,6 @@ export default function CheckoutPage() {
   if (!cart || cart.items.length === 0) {
     return <div className="checkout-no-items">Add products</div>;
   }
-
   const createNewOrder = async (orderData: INewOrder) => {
     createOrder(orderData);
   };
@@ -61,7 +60,7 @@ export default function CheckoutPage() {
         ))}
         <div id="checkout-total-cost">{totalCost} EUR</div>
         <div className="checkout-form-container">
-          <form>
+          {/* <form>
             <div className="form-group">
               <label>Name:</label>
               <input
@@ -148,7 +147,7 @@ export default function CheckoutPage() {
                 placeholder="Country"
               />
             </div>
-          </form>
+          </form> */}
           <PayPalButtons
             style={{
               shape: "rect",
@@ -212,6 +211,7 @@ export default function CheckoutPage() {
                 );
 
                 const captureResult = await captureResponse.json();
+                console.log(captureResult);
 
                 if (captureResult.error) {
                   // Handle errors
@@ -227,27 +227,39 @@ export default function CheckoutPage() {
                   status: captureResult.status,
                 };
 
-                // Construct INewOrder object
                 const newOrderData = {
                   customerDetails: {
-                    name: customer.name,
-                    email: customer.email,
+                    // Name might come from the payer information or shipping name if available
+                    name: `${captureResult.payer.name.given_name} ${captureResult.payer.name.surname}`,
+                    email: captureResult.payer.email_address,
                     address: {
-                      street: customer.address.street,
-                      city: customer.address.city,
-                      postalCode: customer.address.postalCode,
-                      country: customer.address.country,
+                      street:
+                        captureResult.purchase_units[0].shipping.address
+                          .address_line_1,
+                      city: captureResult.purchase_units[0].shipping.address
+                        .admin_area_2,
+                      postalCode:
+                        captureResult.purchase_units[0].shipping.address
+                          .postal_code,
+                      country:
+                        captureResult.purchase_units[0].shipping.address
+                          .country_code,
                     },
                   },
+                  // Assuming cart.items structure matches what you've described; this part stays as your original logic
                   items: cart.items.map((item) => ({
                     productId: item.product._id,
                     quantity: item.quantity,
                     price: item.product.price,
                   })),
-                  paymentDetails,
-                  status: "completed", // Update the status as per your application logic
-                  totalAmount: totalCost,
-                  orderDate: new Date(),
+                  paymentDetails: {
+                    method: "PayPal",
+                    transactionId: captureResult.id,
+                    status: captureResult.status,
+                  },
+                  status: "completed", // This status is based on your application's logic; adjust as necessary
+                  totalAmount: totalCost, // Assuming this is calculated elsewhere in your component
+                  orderDate: new Date(), // ISO string format for consistency
                 };
 
                 // Call your service function to create the new order
