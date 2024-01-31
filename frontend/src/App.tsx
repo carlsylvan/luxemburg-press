@@ -9,7 +9,6 @@ import { QueryClient, QueryClientProvider } from "react-query";
 
 function App() {
   const [cart, setCart] = useState<ICart | null>(null);
-  // const [clientToken, setClientToken] = useState(null);
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
@@ -17,24 +16,6 @@ function App() {
       },
     },
   });
-
-  // useEffect(() => {
-
-  //   (async () => {
-
-  //     const response = await fetch("http://localhost:8888/api/token", {
-
-  //       method: "POST",
-
-  //     });
-
-  //     const { client_token } = await response.json();
-
-  //     setClientToken(client_token);
-
-  //   })();
-
-  // }, []);
 
   const initialOptions = {
     clientId:
