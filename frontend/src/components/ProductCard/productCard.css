@@ -27,6 +27,6 @@
 
 @media (max-width: 540px) {
   .product-card {
-    width: 75%;
+    margin: 0;
   }
 }
