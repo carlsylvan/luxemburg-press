@@ -59,7 +59,7 @@ export default function CheckoutPage() {
             <div className="product-quantity">Quantity: {item.quantity}</div>
           </div>
         ))}
-        <div id="checkout-total-cost">{totalCost} kr</div>
+        <div id="checkout-total-cost">{totalCost} EUR</div>
         <div className="checkout-form-container">
           <form>
             <div className="form-group">

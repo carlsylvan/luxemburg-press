@@ -17,7 +17,7 @@ export default function ProductCard({
     <div className="product-card">
       <p>{title}</p>
       <p>{author}</p>
-      <p>{price} kr</p>
+      <p>{price} EUR</p>
       <img width={400} src={new URL(mainImage, import.meta.url).href}></img>
     </div>
   );
