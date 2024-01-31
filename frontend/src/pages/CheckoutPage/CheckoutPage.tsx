@@ -24,7 +24,7 @@ export default function CheckoutPage() {
 
   const [message, setMessage] = useState<string>("");
   type MessageProps = {
-    content: string; // Define the type for 'content'
+    content: string;
   };
   function Message({ content }: MessageProps) {
     return <p>{content}</p>;
@@ -164,11 +164,6 @@ export default function CheckoutPage() {
                     headers: {
                       "Content-Type": "application/json",
                     },
-
-                    // use the "body" param to optionally pass additional order information
-
-                    // like product ids and quantities
-
                     body: JSON.stringify({
                       cart: [
                         {
@@ -214,13 +209,11 @@ export default function CheckoutPage() {
                 console.log(captureResult);
 
                 if (captureResult.error) {
-                  // Handle errors
                   throw new Error(
                     `Error capturing payment: ${captureResult.error}`
                   );
                 }
 
-                // Extract necessary details from PayPal response for INewOrder
                 const paymentDetails = {
                   method: "PayPal",
                   transactionId: captureResult.id,
@@ -229,7 +222,6 @@ export default function CheckoutPage() {
 
                 const newOrderData = {
                   customerDetails: {
-                    // Name might come from the payer information or shipping name if available
                     name: `${captureResult.payer.name.given_name} ${captureResult.payer.name.surname}`,
                     email: captureResult.payer.email_address,
                     address: {
@@ -246,7 +238,6 @@ export default function CheckoutPage() {
                           .country_code,
                     },
                   },
-                  // Assuming cart.items structure matches what you've described; this part stays as your original logic
                   items: cart.items.map((item) => ({
                     productId: item.product._id,
                     quantity: item.quantity,
@@ -257,12 +248,11 @@ export default function CheckoutPage() {
                     transactionId: captureResult.id,
                     status: captureResult.status,
                   },
-                  status: "completed", // This status is based on your application's logic; adjust as necessary
-                  totalAmount: totalCost, // Assuming this is calculated elsewhere in your component
-                  orderDate: new Date(), // ISO string format for consistency
+                  status: "completed",
+                  totalAmount: totalCost,
+                  orderDate: new Date(),
                 };
 
-                // Call your service function to create the new order
                 await createNewOrder(newOrderData);
 
                 setMessage(
