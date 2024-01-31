@@ -6,25 +6,25 @@ import ProductCard from "../../components/ProductCard/ProductCard";
 import { Link } from "react-router-dom";
 import { createOrder } from "../../services/ordersService";
 import { INewOrder } from "../../interfaces/INewOrder";
-import { ICustomerDetails } from "../../interfaces/IOrder";
+// import { ICustomerDetails } from "../../interfaces/IOrder";
 
 export default function CheckoutPage() {
   const { cart } = useContext(CartContext);
 
-  const [customer, setCustomer] = useState<ICustomerDetails>({
-    name: "",
-    email: "",
-    address: {
-      street: "",
-      city: "",
-      postalCode: "",
-      country: "",
-    },
-  });
+  // const [customer, setCustomer] = useState<ICustomerDetails>({
+  //   name: "",
+  //   email: "",
+  //   address: {
+  //     street: "",
+  //     city: "",
+  //     postalCode: "",
+  //     country: "",
+  //   },
+  // });
 
   const [message, setMessage] = useState<string>("");
   type MessageProps = {
-    content: string; // Define the type for 'content'
+    content: string;
   };
   function Message({ content }: MessageProps) {
     return <p>{content}</p>;
@@ -33,7 +33,6 @@ export default function CheckoutPage() {
   if (!cart || cart.items.length === 0) {
     return <div className="checkout-no-items">Add products</div>;
   }
-
   const createNewOrder = async (orderData: INewOrder) => {
     createOrder(orderData);
   };
@@ -59,9 +58,9 @@ export default function CheckoutPage() {
             <div className="product-quantity">Quantity: {item.quantity}</div>
           </div>
         ))}
-        <div id="checkout-total-cost">{totalCost} kr</div>
+        <div id="checkout-total-cost">{totalCost} EUR</div>
         <div className="checkout-form-container">
-          <form>
+          {/* <form>
             <div className="form-group">
               <label>Name:</label>
               <input
@@ -148,7 +147,7 @@ export default function CheckoutPage() {
                 placeholder="Country"
               />
             </div>
-          </form>
+          </form> */}
           <PayPalButtons
             style={{
               shape: "rect",
@@ -165,11 +164,6 @@ export default function CheckoutPage() {
                     headers: {
                       "Content-Type": "application/json",
                     },
-
-                    // use the "body" param to optionally pass additional order information
-
-                    // like product ids and quantities
-
                     body: JSON.stringify({
                       cart: [
                         {
@@ -212,31 +206,36 @@ export default function CheckoutPage() {
                 );
 
                 const captureResult = await captureResponse.json();
+                console.log(captureResult);
 
                 if (captureResult.error) {
-                  // Handle errors
                   throw new Error(
                     `Error capturing payment: ${captureResult.error}`
                   );
                 }
 
-                // Extract necessary details from PayPal response for INewOrder
                 const paymentDetails = {
                   method: "PayPal",
                   transactionId: captureResult.id,
                   status: captureResult.status,
                 };
 
-                // Construct INewOrder object
                 const newOrderData = {
                   customerDetails: {
-                    name: customer.name,
-                    email: customer.email,
+                    name: `${captureResult.payer.name.given_name} ${captureResult.payer.name.surname}`,
+                    email: captureResult.payer.email_address,
                     address: {
-                      street: customer.address.street,
-                      city: customer.address.city,
-                      postalCode: customer.address.postalCode,
-                      country: customer.address.country,
+                      street:
+                        captureResult.purchase_units[0].shipping.address
+                          .address_line_1,
+                      city: captureResult.purchase_units[0].shipping.address
+                        .admin_area_2,
+                      postalCode:
+                        captureResult.purchase_units[0].shipping.address
+                          .postal_code,
+                      country:
+                        captureResult.purchase_units[0].shipping.address
+                          .country_code,
                     },
                   },
                   items: cart.items.map((item) => ({
@@ -244,13 +243,16 @@ export default function CheckoutPage() {
                     quantity: item.quantity,
                     price: item.product.price,
                   })),
-                  paymentDetails,
-                  status: "completed", // Update the status as per your application logic
+                  paymentDetails: {
+                    method: "PayPal",
+                    transactionId: captureResult.id,
+                    status: captureResult.status,
+                  },
+                  status: "completed",
                   totalAmount: totalCost,
                   orderDate: new Date(),
                 };
 
-                // Call your service function to create the new order
                 await createNewOrder(newOrderData);
 
                 setMessage(

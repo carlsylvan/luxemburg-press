@@ -47,34 +47,39 @@ export default function AdminPage() {
     return orders.map((order) => (
       <div key={order._id} className="order-card">
         <h3>Order ID: {order._id}</h3>
-        <h4>Customer Details:</h4>
-        <p>Name: {order.customerDetails.name}</p>
-        <p>Email: {order.customerDetails.email}</p>
-        <p>
-          Address:{" "}
-          {`${order.customerDetails.address.street}, ${order.customerDetails.address.city}, ${order.customerDetails.address.postalCode}, ${order.customerDetails.address.country}`}
-        </p>
+        <div>
+          <h4>Customer Details:</h4>
+          <p>Name: {order.customerDetails.name}</p>
+          <p>Email: {order.customerDetails.email}</p>
+          <p>
+            Address:{" "}
+            {`${order.customerDetails.address.street}, ${order.customerDetails.address.city}, ${order.customerDetails.address.postalCode}, ${order.customerDetails.address.country}`}
+          </p>
+        </div>
 
-        <h4>Items:</h4>
-        <ul>
-          {order.items.map((item, index) => (
-            <li key={index}>
-              Product ID: {item.productId} - Quantity: {item.quantity} - Price:
-              ${item.price.toFixed(2)}
-            </li>
-          ))}
-        </ul>
+        <div>
+          <h4>Items:</h4>
+          <ul>
+            {order.items.map((item, index) => (
+              <li key={index}>
+                {item.productId} - Qty: {item.quantity} - $
+                {item.price.toFixed(2)}
+              </li>
+            ))}
+          </ul>
+        </div>
 
-        <h4>Payment Details:</h4>
-        <p>Method: {order.paymentDetails.method}</p>
-        {order.paymentDetails.transactionId && (
-          <p>Transaction ID: {order.paymentDetails.transactionId}</p>
-        )}
-        <p>Status: {order.paymentDetails.status}</p>
+        <div>
+          <h4>Payment Details:</h4>
+          <p>Method: {order.paymentDetails.method}</p>
+          {order.paymentDetails.transactionId && (
+            <p>Transaction ID: {order.paymentDetails.transactionId}</p>
+          )}
+          <p>Status: {order.paymentDetails.status}</p>
+        </div>
 
-        <p>Order Status: {order.status}</p>
-        <p>Total Amount: ${order.totalAmount.toFixed(2)}</p>
-        <p>Order Date: {new Date(order.orderDate).toLocaleDateString()}</p>
+        <p>Total: ${order.totalAmount.toFixed(2)}</p>
+        <p>Date: {new Date(order.orderDate).toLocaleDateString()}</p>
       </div>
     ));
   };
