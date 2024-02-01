@@ -62,7 +62,7 @@ export default function AdminPage() {
           <ul>
             {order.items.map((item, index) => (
               <li key={index}>
-                {item.productId} - Qty: {item.quantity} - $
+                {item.productId} - Qty: {item.quantity} - €
                 {item.price.toFixed(2)}
               </li>
             ))}
@@ -78,7 +78,7 @@ export default function AdminPage() {
           <p>Status: {order.paymentDetails.status}</p>
         </div>
 
-        <p>Total: ${order.totalAmount.toFixed(2)}</p>
+        <p>Total: €{order.totalAmount.toFixed(2)}</p>
         <p>Date: {new Date(order.orderDate).toLocaleDateString()}</p>
       </div>
     ));
