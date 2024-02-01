@@ -1,7 +1,7 @@
 import axios from "axios";
-import { IOrder } from "../interfaces/IOrder"; // Assuming you have an IOrder interface
+import { IOrder } from "../interfaces/IOrder";
 
-export const URL = "http://localhost:3000"; // Consider moving this to an environment variable
+export const URL = "http://localhost:3000";
 
 export const getOrders = async () => {
   try {
@@ -47,7 +47,6 @@ export const deleteOrderById = async (id: string) => {
 
 export const editOrderById = async (id: string, updatedOrder: IOrder) => {
   try {
-    // Destructure to exclude _id and get the rest of the properties
     const { _id, ...orderDataWithoutId } = updatedOrder;
     console.log(_id);
 
