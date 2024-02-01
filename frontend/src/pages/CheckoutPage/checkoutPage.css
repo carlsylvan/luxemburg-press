@@ -76,3 +76,26 @@
     margin-right: 0;
   }
 }
+
+.checkout-no-items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.scrolling-text {
+  white-space: nowrap;
+  animation: scrollText 10s linear infinite;
+  font-size: 2rem;
+  color: var(--yellow);
+}
+
+@keyframes scrollText {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

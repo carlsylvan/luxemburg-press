@@ -6,7 +6,6 @@ import ProductCard from "../../components/ProductCard/ProductCard";
 import { Link } from "react-router-dom";
 import { createOrder } from "../../services/ordersService";
 import { INewOrder } from "../../interfaces/INewOrder";
-
 export default function CheckoutPage() {
   const { cart, setCart } = useContext(CartContext);
 
@@ -19,11 +18,16 @@ export default function CheckoutPage() {
   }
 
   if (!cart || cart.items.length === 0) {
-    return <div className="checkout-no-items">Add products</div>;
+    return (
+      <div className="checkout-no-items">
+        <div className="scrolling-text">€ BUY SOMETHING €</div>
+      </div>
+    );
   }
   const createNewOrder = async (orderData: INewOrder) => {
     createOrder(orderData);
     setCart(null);
+    alert("Thank you for you order!");
   };
 
   const totalCost = cart.items.reduce(
