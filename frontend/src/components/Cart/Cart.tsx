@@ -66,7 +66,7 @@ export default function Cart({ closeCart }: ICartProps) {
         </div>
       ))}
 
-      <div id="cart-total-cost">Total: {totalCost} EUR</div>
+      <div id="cart-total-cost">Total: €{totalCost}</div>
 
       <Link to="/checkout">
         <button className="cart-checkout-button">Checkout</button>

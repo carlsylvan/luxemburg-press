@@ -72,7 +72,7 @@ export default function ProductPage() {
         <div className="product-information-info-container">
           <h2>{product.title}</h2>
           <p>by {product.author}</p>
-          <p>{product.price} EUR</p>
+          <p>€{product.price}</p>
           <p className="product-information-description">
             {renderDescription()}
           </p>

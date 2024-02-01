@@ -6,21 +6,8 @@ import ProductCard from "../../components/ProductCard/ProductCard";
 import { Link } from "react-router-dom";
 import { createOrder } from "../../services/ordersService";
 import { INewOrder } from "../../interfaces/INewOrder";
-// import { ICustomerDetails } from "../../interfaces/IOrder";
-
 export default function CheckoutPage() {
-  const { cart } = useContext(CartContext);
-
-  // const [customer, setCustomer] = useState<ICustomerDetails>({
-  //   name: "",
-  //   email: "",
-  //   address: {
-  //     street: "",
-  //     city: "",
-  //     postalCode: "",
-  //     country: "",
-  //   },
-  // });
+  const { cart, setCart } = useContext(CartContext);
 
   const [message, setMessage] = useState<string>("");
   type MessageProps = {
@@ -31,10 +18,16 @@ export default function CheckoutPage() {
   }
 
   if (!cart || cart.items.length === 0) {
-    return <div className="checkout-no-items">Add products</div>;
+    return (
+      <div className="checkout-no-items">
+        <div className="scrolling-text">€ BUY SOMETHING €</div>
+      </div>
+    );
   }
   const createNewOrder = async (orderData: INewOrder) => {
     createOrder(orderData);
+    setCart(null);
+    alert("Thank you for you order!");
   };
 
   const totalCost = cart.items.reduce(
@@ -60,94 +53,6 @@ export default function CheckoutPage() {
         ))}
         <div id="checkout-total-cost">{totalCost} EUR</div>
         <div className="checkout-form-container">
-          {/* <form>
-            <div className="form-group">
-              <label>Name:</label>
-              <input
-                type="text"
-                value={customer.name}
-                onChange={(e) =>
-                  setCustomer({ ...customer, name: e.target.value })
-                }
-                placeholder="Name"
-              />
-            </div>
-
-            <div className="form-group">
-              <label>Email:</label>
-              <input
-                type="email"
-                value={customer.email}
-                onChange={(e) =>
-                  setCustomer({ ...customer, email: e.target.value })
-                }
-                placeholder="Email"
-              />
-            </div>
-
-            <div className="form-group">
-              <label>Street:</label>
-              <input
-                type="text"
-                value={customer.address.street}
-                onChange={(e) =>
-                  setCustomer({
-                    ...customer,
-                    address: { ...customer.address, street: e.target.value },
-                  })
-                }
-                placeholder="Street"
-              />
-            </div>
-
-            <div className="form-group">
-              <label>City:</label>
-              <input
-                type="text"
-                value={customer.address.city}
-                onChange={(e) =>
-                  setCustomer({
-                    ...customer,
-                    address: { ...customer.address, city: e.target.value },
-                  })
-                }
-                placeholder="City"
-              />
-            </div>
-
-            <div className="form-group">
-              <label>Postal Code:</label>
-              <input
-                type="text"
-                value={customer.address.postalCode}
-                onChange={(e) =>
-                  setCustomer({
-                    ...customer,
-                    address: {
-                      ...customer.address,
-                      postalCode: e.target.value,
-                    },
-                  })
-                }
-                placeholder="Postal Code"
-              />
-            </div>
-
-            <div className="form-group">
-              <label>Country:</label>
-              <input
-                type="text"
-                value={customer.address.country}
-                onChange={(e) =>
-                  setCustomer({
-                    ...customer,
-                    address: { ...customer.address, country: e.target.value },
-                  })
-                }
-                placeholder="Country"
-              />
-            </div>
-          </form> */}
           <PayPalButtons
             style={{
               shape: "rect",
