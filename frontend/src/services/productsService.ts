@@ -48,7 +48,6 @@ export const deleteProductById = async (id: string) => {
 
 export const editProductById = async (id: string, updatedProduct: IProduct) => {
   try {
-    // Destructure to exclude _id and get the rest of the properties
     const { _id, ...productDataWithoutId } = updatedProduct;
     console.log(_id);
 

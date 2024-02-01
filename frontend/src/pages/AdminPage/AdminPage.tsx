@@ -137,7 +137,6 @@ export default function AdminPage() {
   const handleRemoveProduct = async () => {
     if (editProduct && editProduct._id) {
       await deleteProductById(editProduct._id);
-      // Optionally, update your products list or UI state here
     }
   };
 

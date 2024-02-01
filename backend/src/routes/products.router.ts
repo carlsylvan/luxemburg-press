@@ -1,14 +1,10 @@
-// External Dependencies
 import express, { Request, Response } from "express";
 import { ObjectId } from "mongodb";
 import { collections } from "../services/database.service";
 import Product from "../models/product";
-// Global Config
 export const productsRouter = express.Router();
 
 productsRouter.use(express.json());
-
-// GET
 
 productsRouter.get("/", async (_req: Request, res: Response) => {
   try {
@@ -32,14 +28,12 @@ productsRouter.get("/", async (_req: Request, res: Response) => {
 productsRouter.get("/:id", async (req: Request, res: Response) => {
   const id = req.params.id;
 
-  // Check if id is provided and valid
   if (!id || !ObjectId.isValid(id)) {
     res.status(400).send("Invalid or missing ID");
     return;
   }
 
   try {
-    // Ensure that the products collection is initialized
     if (!collections.products) {
       res.status(500).send("Database not initialized correctly");
       return;
@@ -49,7 +43,6 @@ productsRouter.get("/:id", async (req: Request, res: Response) => {
     const document = await collections.products.findOne(query);
 
     if (document) {
-      // Perform type assertion
       const product = document as unknown as Product;
       res.status(200).send(product);
     } else {
@@ -62,8 +55,6 @@ productsRouter.get("/:id", async (req: Request, res: Response) => {
     res.status(500).send(errorMessage);
   }
 });
-
-// POST
 
 productsRouter.post("/", async (req: Request, res: Response) => {
   try {
@@ -84,8 +75,6 @@ productsRouter.post("/", async (req: Request, res: Response) => {
     res.status(400).send(errorMessage);
   }
 });
-
-// PUT
 
 productsRouter.put("/:id", async (req: Request, res: Response) => {
   const id = req?.params?.id;
@@ -108,8 +97,6 @@ productsRouter.put("/:id", async (req: Request, res: Response) => {
     res.status(400).send(errorMessage);
   }
 });
-
-// DELETE
 
 productsRouter.delete("/:id", async (req: Request, res: Response) => {
   const id = req?.params?.id;
