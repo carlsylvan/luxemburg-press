@@ -6,6 +6,7 @@ import AdminPage from "./pages/AdminPage/AdminPage.tsx";
 import InfoPage from "./pages/InfoPage/InfoPage.tsx";
 import Layout from "./components/Layout/Layout.tsx";
 import CheckoutPage from "./pages/CheckoutPage/CheckoutPage.tsx";
+import LandingPage from "./pages/LandingPage/LandingPage.tsx";
 
 export const router = createBrowserRouter([
   {
@@ -16,6 +17,15 @@ export const router = createBrowserRouter([
         path: "/",
         element: <StartPage></StartPage>,
       },
+      {
+        path: "/landing",
+        element: (
+          <>
+            <LandingPage></LandingPage>
+          </>
+        ),
+      },
+
       {
         path: "/info",
         element: (
